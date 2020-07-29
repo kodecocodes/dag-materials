@@ -1,0 +1,433 @@
+{
+  "version": "v0.1",
+  "items": [
+    {
+      "name": "Regent Street / St James\u0027s",
+      "id": "490011516Y",
+      "direction": "Hyde Park Corner or Oxford Circus",
+      "indicator": "Y",
+      "location": {
+        "latitude": 51.508942,
+        "longitude": -0.134232
+      },
+      "distance": 17.31777762432912
+    },
+    {
+      "name": "Regent Street / St James\u0027s",
+      "id": "490011515Z",
+      "direction": "Oxford Circus or Green Park",
+      "indicator": "Z",
+      "location": {
+        "latitude": 51.508733,
+        "longitude": -0.134068
+      },
+      "distance": 30.085666889750783
+    },
+    {
+      "name": "Piccadilly Circus  Haymarket",
+      "id": "490007960L",
+      "indicator": "L",
+      "direction": "Manda Office",
+      "location": {
+        "latitude": 51.509637,
+        "longitude": -0.13272
+      },
+      "distance": 113.51834577710997
+    },
+    {
+      "name": "Piccadilly Circus  Haymarket",
+      "id": "49007960S1",
+      "indicator": "M",
+      "direction": "RW Office",
+      "location": {
+        "latitude": 51.509794,
+        "longitude": -0.132944
+      },
+      "distance": 114.7106716100591
+    },
+    {
+      "name": "Haymarket / Jermyn Street",
+      "id": "490007960R",
+      "direction": "Aldwych",
+      "indicator": "R",
+      "location": {
+        "latitude": 51.509683,
+        "longitude": -0.132732
+      },
+      "distance": 116.1540688566761
+    },
+    {
+      "name": "Haymarket / Charles II Street",
+      "id": "490007960P",
+      "direction": "Parliament Square",
+      "indicator": "P",
+      "location": {
+        "latitude": 51.50898,
+        "longitude": -0.132098
+      },
+      "distance": 131.76379755299794
+    },
+    {
+      "name": "Charles II Street",
+      "id": "490004996U",
+      "direction": "Oxford Circus",
+      "indicator": "U",
+      "location": {
+        "latitude": 51.507944,
+        "longitude": -0.133077
+      },
+      "distance": 133.7880078081788
+    },
+    {
+      "name": "Charles II Street",
+      "id": "490004996X",
+      "indicator": "RW",
+      "direction": "RW Office",
+      "location": {
+        "latitude": 51.508211,
+        "longitude": -0.132374
+      },
+      "distance": 142.812779958731
+    },
+    {
+      "name": "Haymarket / Charles II Street",
+      "id": "490007960S",
+      "indicator": "P",
+      "location": {
+        "latitude": 51.508759,
+        "longitude": -0.131776
+      },
+      "distance": 156.3666484160621
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179S",
+      "direction": "Marble Arch, Knightsbridge or Victoria",
+      "indicator": "S",
+      "location": {
+        "latitude": 51.509154,
+        "longitude": -0.13627
+      },
+      "distance": 158.16610805946613
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179B",
+      "direction": "Trafalgar Square or Tottenham Court Road",
+      "indicator": "B",
+      "location": {
+        "latitude": 51.509307,
+        "longitude": -0.136235
+      },
+      "distance": 158.53560021024276
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179G",
+      "direction": "Aldwych",
+      "indicator": "G",
+      "location": {
+        "latitude": 51.510061,
+        "longitude": -0.13557
+      },
+      "distance": 160.526517561675
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179C",
+      "direction": "Baker Street",
+      "indicator": "C",
+      "location": {
+        "latitude": 51.50986,
+        "longitude": -0.135996
+      },
+      "distance": 168.1511452548764
+    },
+    {
+      "name": "Trocadero / Haymarket",
+      "id": "490015185H",
+      "direction": "Holborn or Warren Street Station",
+      "indicator": "H",
+      "location": {
+        "latitude": 51.510515,
+        "longitude": -0.134197
+      },
+      "distance": 169.1569994040323
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179F",
+      "direction": "Parliament Square",
+      "indicator": "F",
+      "location": {
+        "latitude": 51.509894,
+        "longitude": -0.136427
+      },
+      "distance": 195.34445845298595
+    },
+    {
+      "name": "Rupert Street",
+      "id": "490017356N",
+      "indicator": "RW",
+      "direction": "RW Office",
+      "location": {
+        "latitude": 51.510587,
+        "longitude": -0.132465
+      },
+      "distance": 206.1518656412751
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490000179D",
+      "direction": "Marble Arch",
+      "indicator": "D",
+      "location": {
+        "latitude": 51.509858,
+        "longitude": -0.136991
+      },
+      "distance": 228.1207295864344
+    },
+    {
+      "name": "Trocadero / Haymarket",
+      "id": "490011791K",
+      "direction": "Hyde Park Corner",
+      "indicator": "K",
+      "location": {
+        "latitude": 51.511195,
+        "longitude": -0.133391
+      },
+      "distance": 247.89878829733848
+    },
+    {
+      "name": "Pall Mall (SW1)",
+      "id": "490014273W",
+      "indicator": "PM",
+      "direction": "RW Office",
+      "location": {
+        "latitude": 51.50678,
+        "longitude": -0.133427
+      },
+      "distance": 250.23365407353205
+    },
+    {
+      "name": "Piccadilly Circus",
+      "id": "490011515W",
+      "direction": "Oxford Circus or Great Portland Street",
+      "indicator": "E",
+      "location": {
+        "latitude": 51.509882,
+        "longitude": -0.13735
+      },
+      "distance": 251.94837795090515
+    },
+    {
+      "name": "Trafalgar Square",
+      "id": "490013767Z",
+      "indicator": "Z",
+      "direction": "RW Office",
+      "location": {
+        "latitude": 51.508059,
+        "longitude": -0.130176
+      },
+      "distance": 284.8291240660825
+    },
+    {
+      "name": "Trafalgar Square",
+      "id": "490013767T",
+      "direction": "Oxford Circus",
+      "indicator": "T",
+      "location": {
+        "latitude": 51.507533,
+        "longitude": -0.129909
+      },
+      "distance": 327.041102616498
+    },
+    {
+      "name": "Trafalgar Sq / Charing Cross Stn",
+      "id": "490013767A",
+      "direction": "Lambeth or Vauxhall",
+      "indicator": "A",
+      "location": {
+        "latitude": 51.507631,
+        "longitude": -0.129804
+      },
+      "distance": 328.15894350624967
+    },
+    {
+      "name": "Trafalgar Square",
+      "id": "490013767B",
+      "direction": "Aldwych",
+      "indicator": "B",
+      "location": {
+        "latitude": 51.507645,
+        "longitude": -0.129544
+      },
+      "distance": 343.5245497582889
+    },
+    {
+      "name": "Trafalgar Square",
+      "id": "490013767S",
+      "direction": "Hyde Park Corner",
+      "indicator": "S",
+      "location": {
+        "latitude": 51.507454,
+        "longitude": -0.129451
+      },
+      "distance": 359.0131955345153
+    },
+    {
+      "name": "Pall Mall / St James\u0027s Palace",
+      "id": "490017354E",
+      "direction": "Aldwych",
+      "indicator": "K",
+      "location": {
+        "latitude": 51.505993,
+        "longitude": -0.135967
+      },
+      "distance": 361.3258561848734
+    },
+    {
+      "name": "Old Bond Street / Royal Academy",
+      "id": "490011748H",
+      "direction": "Trafalgar Square or Tottenham Court Road",
+      "indicator": "L",
+      "location": {
+        "latitude": 51.508295,
+        "longitude": -0.13936
+      },
+      "distance": 379.4714103306194
+    },
+    {
+      "name": "Old Bond Street / Royal Academy",
+      "id": "490010526G",
+      "direction": "Marble Arch, Knightsbridge or Victoria",
+      "indicator": "G",
+      "location": {
+        "latitude": 51.508095,
+        "longitude": -0.139801
+      },
+      "distance": 414.2497481156165
+    },
+    {
+      "name": "Leicester Square Station",
+      "id": "490000135A",
+      "direction": "Tottenham Court Road",
+      "indicator": "L",
+      "location": {
+        "latitude": 51.51055,
+        "longitude": -0.128474
+      },
+      "distance": 419.8358051842235
+    },
+    {
+      "name": "Dean Street / Chinatown",
+      "id": "490006008W",
+      "direction": "Hyde Park Corner",
+      "indicator": "W",
+      "location": {
+        "latitude": 51.512352,
+        "longitude": -0.130937
+      },
+      "distance": 429.1552087254285
+    },
+    {
+      "name": "Pall Mall / St James\u0027s Palace",
+      "id": "490017354W",
+      "indicator": "MC",
+      "direction": "Home",
+      "location": {
+        "latitude": 51.505558,
+        "longitude": -0.136863
+      },
+      "distance": 431.3553063137368
+    },
+    {
+      "name": "Beak Street / Hamleys Toy Store",
+      "id": "490004810RK",
+      "direction": "Aldwych",
+      "indicator": "V",
+      "location": {
+        "latitude": 51.511303,
+        "longitude": -0.13905
+      },
+      "distance": 433.6384586591047
+    },
+    {
+      "name": "St Martin\u0027s Place",
+      "id": "490016161S",
+      "direction": "Waterloo or Westminster",
+      "indicator": "K",
+      "location": {
+        "latitude": 51.509848,
+        "longitude": -0.127869
+      },
+      "distance": 435.02935558628553
+    },
+    {
+      "name": "Beak Street / Hamleys Toy Store",
+      "id": "490005537RA",
+      "direction": "Baker Street",
+      "indicator": "L",
+      "location": {
+        "latitude": 51.511268,
+        "longitude": -0.139138
+      },
+      "distance": 436.30512126391454
+    },
+    {
+      "name": "Leicester Square Station",
+      "id": "490000135S",
+      "indicator": "H",
+      "direction": "Home",
+      "location": {
+        "latitude": 51.510909,
+        "longitude": -0.128416
+      },
+      "distance": 441.28533715374533
+    },
+    {
+      "name": "Trafalgar Sq / Charing Cross Stn",
+      "id": "490013767C",
+      "direction": "Tottenham Court Road",
+      "indicator": "C",
+      "location": {
+        "latitude": 51.508123,
+        "longitude": -0.127406
+      },
+      "distance": 467.0598496644177
+    },
+    {
+      "name": "Gerrard Place / Chinatown",
+      "id": "490016425WA",
+      "direction": "Holborn or Warren Street Station",
+      "indicator": "P",
+      "location": {
+        "latitude": 51.512685,
+        "longitude": -0.13039
+      },
+      "distance": 480.3216024468838
+    },
+    {
+      "name": "Leicester Square Station",
+      "id": "490000135B",
+      "direction": "Waterloo or Westminster",
+      "indicator": "J",
+      "location": {
+        "latitude": 51.511591,
+        "longitude": -0.128331
+      },
+      "distance": 487.1663344799013
+    },
+    {
+      "name": "Trafalgar Square / Charing Cross Stn",
+      "id": "490013767D",
+      "direction": "Westminster",
+      "indicator": "D",
+      "location": {
+        "latitude": 51.508189,
+        "longitude": -0.127058
+      },
+      "distance": 489.250004678538
+    }
+  ]
+}
