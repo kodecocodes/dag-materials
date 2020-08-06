@@ -42,14 +42,14 @@ import com.raywenderlich.android.ui.navigation.NavigatorImpl
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navigator: Navigator
+  private lateinit var navigator: Navigator
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        navigator = NavigatorImpl(this)
-        if (savedInstanceState == null) {
-            navigator.navigateTo(FragmentDestination(BusStopFragment(), R.id.anchor_point))
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    navigator = NavigatorImpl(this)
+    if (savedInstanceState == null) {
+      navigator.navigateTo(FragmentDestination(BusStopFragment(), R.id.anchor_point))
     }
+  }
 }

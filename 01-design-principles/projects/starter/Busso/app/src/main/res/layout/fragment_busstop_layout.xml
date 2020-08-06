@@ -32,13 +32,13 @@
   ~ THE SOFTWARE.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:orientation="vertical">
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_margin="8dp"
+  android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/busstop_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/busstop_recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 </LinearLayout>

@@ -32,20 +32,20 @@
   ~ THE SOFTWARE.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_margin="8dp"
+  android:orientation="vertical">
+
+  <include
+    android:id="@+id/bus_stop_info"
+    layout="@layout/busstop_list_item_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:transitionName="bus_stop_detail" />
 
-    <include
-        android:id="@+id/bus_stop_info"
-        layout="@layout/busstop_list_item_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transitionName="bus_stop_detail" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/busarrival_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/busarrival_recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 </LinearLayout>

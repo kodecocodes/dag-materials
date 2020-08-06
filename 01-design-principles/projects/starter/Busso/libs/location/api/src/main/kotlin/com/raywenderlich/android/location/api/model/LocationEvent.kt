@@ -66,11 +66,11 @@ class LocationData(provider: String?, val location: GeoLocation) : LocationEvent
  * This is emitted when we want to emit information about a change in status
  */
 class LocationStatus(provider: String?, status: Int, val extras: Map<String, Any>) :
-    LocationEvent(provider)
+  LocationEvent(provider)
 
 /**
  * This is emitted when the provided changes its state between enabled and disabled which is the
  * meaning of the second parameter
  */
 class LocationProviderEnabledChanged(provider: String?, val enabled: Boolean) :
-    LocationEvent(provider)
+  LocationEvent(provider)

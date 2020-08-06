@@ -53,77 +53,77 @@ import io.reactivex.schedulers.Schedulers
  */
 class BusArrivalFragment : Fragment() {
 
-    private val disposables = CompositeDisposable()
-    private lateinit var rootView: View
-    private lateinit var busArrivalRecyclerView: RecyclerView
-    private val busArrivalsAdapter = BusArrivalListAdapter()
+  private val disposables = CompositeDisposable()
+  private lateinit var rootView: View
+  private lateinit var busArrivalRecyclerView: RecyclerView
+  private val busArrivalsAdapter = BusArrivalListAdapter()
 
-    private lateinit var busStopIndicator: TextView
-    private lateinit var busStopName: TextView
-    private lateinit var busStopDistance: TextView
-    private lateinit var busStopDirection: TextView
+  private lateinit var busStopIndicator: TextView
+  private lateinit var busStopName: TextView
+  private lateinit var busStopDistance: TextView
+  private lateinit var busStopDirection: TextView
 
 
-    companion object {
-        const val BUS_STOP_ID = "BUS_STOP_ID"
+  companion object {
+    const val BUS_STOP_ID = "BUS_STOP_ID"
+  }
+
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? = inflater.inflate(R.layout.fragment_busarrival_layout, container, false).apply {
+    busStopIndicator = findViewById(R.id.bus_stop_indicator)
+    busStopName = findViewById(R.id.bus_stop_item_name)
+    busStopDistance = findViewById(R.id.bus_stop_item_distance)
+    busStopDirection = findViewById(R.id.bus_stop_item_direction)
+    busArrivalRecyclerView = findViewById(R.id.busarrival_recyclerview)
+    initRecyclerView(busArrivalRecyclerView)
+  }
+
+  private fun initRecyclerView(busStopRecyclerView: RecyclerView) {
+    busArrivalRecyclerView.apply {
+      val viewManager = LinearLayoutManager(busStopRecyclerView.context)
+      layoutManager = viewManager
+      adapter = busArrivalsAdapter
     }
+  }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_busarrival_layout, container, false).apply {
-        busStopIndicator = findViewById(R.id.bus_stop_indicator)
-        busStopName = findViewById(R.id.bus_stop_item_name)
-        busStopDistance = findViewById(R.id.bus_stop_item_distance)
-        busStopDirection = findViewById(R.id.bus_stop_item_direction)
-        busArrivalRecyclerView = findViewById(R.id.busarrival_recyclerview)
-        initRecyclerView(busArrivalRecyclerView)
-    }
+  override fun onStart() {
+    super.onStart()
+    getBusArrivals()
+  }
 
-    private fun initRecyclerView(busStopRecyclerView: RecyclerView) {
-        busArrivalRecyclerView.apply {
-            val viewManager = LinearLayoutManager(busStopRecyclerView.context)
-            layoutManager = viewManager
-            adapter = busArrivalsAdapter
-        }
-    }
+  override fun onStop() {
+    disposables.clear()
+    super.onStop()
+  }
 
-    override fun onStart() {
-        super.onStart()
-        getBusArrivals()
+  private fun getBusArrivals() {
+    val busStopId = arguments?.getString(BUS_STOP_ID) ?: ""
+    context?.let { ctx ->
+      disposables.add(
+        provideBussoEndPoint(ctx)
+          .findArrivals(busStopId)
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .map(::mapBusArrivals)
+          .subscribe(::handleBusArrival, ::handleBusArrivalError)
+      )
     }
+  }
 
-    override fun onStop() {
-        disposables.clear()
-        super.onStop()
+  private fun handleBusArrival(arrivals: BusArrivalsViewModel) {
+    with(arrivals.busStop) {
+      busStopIndicator.text = stopIndicator
+      busStopName.text = stopName
+      busStopDistance.text = stopDistance
+      busStopDirection.text = stopDirection
     }
+    busArrivalsAdapter.submitList(arrivals.arrivals)
+  }
 
-    private fun getBusArrivals() {
-        val busStopId = arguments?.getString(BUS_STOP_ID) ?: ""
-        context?.let { ctx ->
-            disposables.add(
-                provideBussoEndPoint(ctx)
-                    .findArrivals(busStopId)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .map(::mapBusArrivals)
-                    .subscribe(::handleBusArrival, ::handleBusArrivalError)
-            )
-        }
-    }
-
-    private fun handleBusArrival(arrivals: BusArrivalsViewModel) {
-        with(arrivals.busStop) {
-            busStopIndicator.text = stopIndicator
-            busStopName.text = stopName
-            busStopDistance.text = stopDistance
-            busStopDirection.text = stopDirection
-        }
-        busArrivalsAdapter.submitList(arrivals.arrivals)
-    }
-
-    private fun handleBusArrivalError(error: Throwable) {
-        // TODO Handle errors
-    }
+  private fun handleBusArrivalError(error: Throwable) {
+    // TODO Handle errors
+  }
 }
