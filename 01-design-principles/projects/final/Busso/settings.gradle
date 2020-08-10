@@ -1,0 +1,5 @@
+rootProject.name = "Busso"
+include ':app'
+include ':libs:location:api'
+include ':libs:location:rx'
+include ':libs:ui:navigation'
