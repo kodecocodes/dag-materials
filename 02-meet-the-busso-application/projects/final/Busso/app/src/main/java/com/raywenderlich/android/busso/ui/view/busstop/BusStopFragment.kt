@@ -151,7 +151,7 @@ class BusStopFragment : Fragment() {
   }
 
   private fun displayLocationNotAvailable() {
-    Snackbar.make(rootView, R.string.warning_location_not_available, Snackbar.LENGTH_LONG)
+    Snackbar.make(busStopRecyclerView, R.string.warning_location_not_available, Snackbar.LENGTH_LONG)
       .setAction(R.string.message_retry) {
         subscribeToLocation()
       }
@@ -159,7 +159,7 @@ class BusStopFragment : Fragment() {
   }
 
   private fun handleError(error: Throwable) {
-    Snackbar.make(rootView, R.string.error_problem_getting_location, Snackbar.LENGTH_LONG)
+    Snackbar.make(busStopRecyclerView, R.string.error_problem_getting_location, Snackbar.LENGTH_LONG)
       .setAction(R.string.message_retry) {
         subscribeToLocation()
       }
