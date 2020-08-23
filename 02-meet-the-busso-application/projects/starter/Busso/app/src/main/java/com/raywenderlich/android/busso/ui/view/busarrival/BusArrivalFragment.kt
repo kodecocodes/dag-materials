@@ -54,7 +54,6 @@ import io.reactivex.schedulers.Schedulers
 class BusArrivalFragment : Fragment() {
 
   private val disposables = CompositeDisposable()
-  private lateinit var rootView: View
   private lateinit var busArrivalRecyclerView: RecyclerView
   private val busArrivalsAdapter = BusArrivalListAdapter()
 

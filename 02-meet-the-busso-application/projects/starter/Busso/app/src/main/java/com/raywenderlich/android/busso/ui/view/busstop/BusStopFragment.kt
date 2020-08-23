@@ -73,7 +73,6 @@ class BusStopFragment : Fragment() {
   private val grantedPermissionChecker = object : GeoLocationPermissionChecker {
     override val isPermissionGiven: Boolean = true
   }
-  private lateinit var rootView: View
   private lateinit var busStopRecyclerView: RecyclerView
   private lateinit var navigator: Navigator
   private val busStopAdapter =
