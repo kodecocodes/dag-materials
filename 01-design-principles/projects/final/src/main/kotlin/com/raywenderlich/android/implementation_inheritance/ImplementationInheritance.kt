@@ -43,14 +43,12 @@ open class Person(val name: String) {
 }
 
 class Student(name: String) : Person(name) {
-
   fun study(topic: String) {
     println("$name is studying $topic")
   }
 }
 
 class Musician(name: String) : Person(name) {
-
   fun play(instrument: String) {
     println("$name is playing $instrument")
   }

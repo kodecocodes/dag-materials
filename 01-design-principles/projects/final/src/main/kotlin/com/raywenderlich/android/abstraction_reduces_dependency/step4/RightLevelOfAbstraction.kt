@@ -59,8 +59,8 @@ class Musician(name: String) : Person(name) {
 }
 
 class Cat(override val name: String) : Named {
-  fun meaw() {
-    println("$name is meawing...")
+  fun meow() {
+    println("$name is meowing...")
   }
 }
 
