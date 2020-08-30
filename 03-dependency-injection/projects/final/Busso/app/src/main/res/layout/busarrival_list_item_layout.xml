@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  card_view:cardBackgroundColor="@android:color/white"
+  card_view:cardCornerRadius="4dp"
+  card_view:cardElevation="6dp"
+  card_view:cardUseCompatPadding="true">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="8dp">
+
+    <TextView
+      android:id="@+id/bus_arrival_line_and_destination"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/roboto_bold"
+      android:gravity="left"
+      android:textColor="@android:color/black"
+      android:textSize="20sp"
+      card_view:layout_constraintEnd_toEndOf="parent"
+      card_view:layout_constraintTop_toTopOf="parent"
+      tools:text="District to Piccadilly" />
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/bus_arrival_times_recyclerview"
+      android:layout_width="match_parent"
+      android:layout_height="30dp"
+      android:layout_marginTop="8dp"
+      android:orientation="horizontal"
+      card_view:layout_constraintEnd_toEndOf="@+id/bus_arrival_line_and_destination"
+      card_view:layout_constraintStart_toStartOf="@+id/bus_arrival_line_and_destination"
+      card_view:layout_constraintTop_toBottomOf="@id/bus_arrival_line_and_destination"
+      tools:layout_editor_absoluteX="8dp" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
