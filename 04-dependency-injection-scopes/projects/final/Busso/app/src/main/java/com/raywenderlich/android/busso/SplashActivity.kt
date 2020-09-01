@@ -68,7 +68,6 @@ class SplashActivity : AppCompatActivity() {
   private val handler = Handler()
   private val disposables = CompositeDisposable()
   lateinit var locationObservable: Observable<LocationEvent>
-  lateinit var activityServiceLocator: ServiceLocator
   lateinit var navigator: Navigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
