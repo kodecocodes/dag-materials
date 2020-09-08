@@ -46,15 +46,15 @@ import com.raywenderlich.android.busso.R
 private val ARRIVAL_TIME_DIFF_UTIL = object : DiffUtil.ItemCallback<BusArrivalViewModel>() {
 
   override fun areItemsTheSame(
-    oldItem: BusArrivalViewModel,
-    newItem: BusArrivalViewModel
+      oldItem: BusArrivalViewModel,
+      newItem: BusArrivalViewModel
   ): Boolean {
     return oldItem == newItem
   }
 
   override fun areContentsTheSame(
-    oldItem: BusArrivalViewModel,
-    newItem: BusArrivalViewModel
+      oldItem: BusArrivalViewModel,
+      newItem: BusArrivalViewModel
   ): Boolean {
     return oldItem == newItem
   }
@@ -64,14 +64,14 @@ private val ARRIVAL_TIME_DIFF_UTIL = object : DiffUtil.ItemCallback<BusArrivalVi
  * The Adapter for the BusArrivals
  */
 class BusArrivalTimeAdapter :
-  ListAdapter<BusArrivalViewModel, BusArrivalTimeViewHolder>(ARRIVAL_TIME_DIFF_UTIL) {
+    ListAdapter<BusArrivalViewModel, BusArrivalTimeViewHolder>(ARRIVAL_TIME_DIFF_UTIL) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusArrivalTimeViewHolder {
     val itemLayout =
-      LayoutInflater.from(parent.context)
-        .inflate(R.layout.busarrival_item_layout, parent, false)
+        LayoutInflater.from(parent.context)
+            .inflate(R.layout.busarrival_item_layout, parent, false)
     return BusArrivalTimeViewHolder(
-      itemLayout
+        itemLayout
     )
   }
 

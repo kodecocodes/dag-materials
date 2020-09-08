@@ -41,9 +41,9 @@ import android.os.Bundle
  */
 interface Navigator {
 
-    /**
-     * Allows to go to a specific destination passing some
-     * parameters into a Bundle
-     */
-    fun navigateTo(destination: Destination, params: Bundle? = null)
+  /**
+   * Allows to go to a specific destination passing some
+   * parameters into a Bundle
+   */
+  fun navigateTo(destination: Destination, params: Bundle? = null)
 }
