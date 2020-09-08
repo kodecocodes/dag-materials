@@ -55,6 +55,7 @@ class ServiceLocatorImpl(
   private val locationObservable =
     provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
 
+  @Suppress("UNCHECKED_CAST")
   @SuppressLint("ServiceCast")
   override fun <A : Any> lookUp(name: String): A = when (name) {
     LOCATION_OBSERVABLE -> locationObservable
