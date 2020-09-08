@@ -47,127 +47,150 @@ import org.robolectric.RuntimeEnvironment
 )
 class RxLocationObservableKtTest {
 
-    lateinit var context: Context
+  lateinit var context: Context
 
-    @Before
-    fun setUp() {
-        context = RuntimeEnvironment.systemContext
-    }
+  @Before
+  fun setUp() {
+    context = RuntimeEnvironment.systemContext
+  }
 
-    @Test
-    fun whenPermissionIsDeniedLocationPermissionRequestIsSentAndThenCompletes() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsDenied()
-            }
-            When {
-                subscribeRx()
-            }
-            Then {
-                permissionRequestIsFired()
-                isComplete()
-            }
-        }
-    }
+  @Test
+  fun mapBusStop_givenCompleteBusStop_returnsCompleteBusStopViewModel() {
+    // 1
+    val inputBusStop = BusStop(
+        "id",
+        "stopName",
+        GeoLocation(1.0, 2.0),
+        "direction",
+        "indicator",
+        123F
+    )
+    // 2
+    val expectedViewModel = BusStopViewModel(
+        "id",
+        "stopName",
+        "direction",
+        "indicator",
+        "123 m"
+    )
+    // 3
+    assertEquals(expectedViewModel, mapBusStop(inputBusStop))
+  }
 
-    @Test
-    fun whenPermissionIsGrantedLocationPermissionRequestIsNotSent() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-            }
-            When {
-                subscribeRx()
-            }
-            Then {
-                noPermissionRequestIsFired()
-            }
-        }
+  @Test
+  fun whenPermissionIsDeniedLocationPermissionRequestIsSentAndThenCompletes() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsDenied()
+      }
+      When {
+        subscribeRx()
+      }
+      Then {
+        permissionRequestIsFired()
+        isComplete()
+      }
     }
+  }
 
-    @Test
-    fun whenPermissionIsGrantedLocationPermissionGrantedIsSent() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-            }
-            When {
-                subscribeRx()
-            }
-            Then {
-                noPermissionRequestIsFired()
-                permissionGrantedIsFired()
-            }
-        }
+  @Test
+  fun whenPermissionIsGrantedLocationPermissionRequestIsNotSent() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+      }
+      When {
+        subscribeRx()
+      }
+      Then {
+        noPermissionRequestIsFired()
+      }
     }
+  }
 
-    @Test
-    fun whenPermissionIsGrantedNoLastLocationAvailableIsReceivedWithFirstLocation() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-                noLastKnownLocationAvailable()
-            }
-            When {
-                subscribeRx()
-                locationChangedTo(location2())
-            }
-            Then {
-                receivedLocationNotAvailable()
-                containsLocation(location2().latitude, location2().longitude)
-            }
-        }
+  @Test
+  fun whenPermissionIsGrantedLocationPermissionGrantedIsSent() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+      }
+      When {
+        subscribeRx()
+      }
+      Then {
+        noPermissionRequestIsFired()
+        permissionGrantedIsFired()
+      }
     }
+  }
 
-    @Test
-    fun whenPermissionIsGrantedLastLocationAvailableIsReturned() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-                lastKnownLocationIs(location1(1000))
-            }
-            When {
-                subscribeRx()
-                locationChangedTo(location2(2000))
-            }
-            Then {
-                containsLocation(location1().latitude, location1().longitude)
-                containsLocation(location2().latitude, location2().longitude)
-            }
-        }
+  @Test
+  fun whenPermissionIsGrantedNoLastLocationAvailableIsReceivedWithFirstLocation() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+        noLastKnownLocationAvailable()
+      }
+      When {
+        subscribeRx()
+        locationChangedTo(location2())
+      }
+      Then {
+        receivedLocationNotAvailable()
+        containsLocation(location2().latitude, location2().longitude)
+      }
     }
+  }
 
-    @Test
-    fun whenProviderBecomesAvailableLocationProviderEnabledChangedIsFired() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-                noLastKnownLocationAvailable()
-            }
-            When {
-                subscribeRx()
-                enableProvider()
-            }
-            Then {
-                providerEnabledReceived()
-            }
-        }
+  @Test
+  fun whenPermissionIsGrantedLastLocationAvailableIsReturned() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+        lastKnownLocationIs(location1(1000))
+      }
+      When {
+        subscribeRx()
+        locationChangedTo(location2(2000))
+      }
+      Then {
+        containsLocation(location1().latitude, location1().longitude)
+        containsLocation(location2().latitude, location2().longitude)
+      }
     }
+  }
 
-    @Test
-    fun whenProviderBecomesNotAvailableLocationProviderDisabledChangedIsFired() {
-        rxLocationTest(context) {
-            Given {
-                permissionIsGranted()
-                noLastKnownLocationAvailable()
-            }
-            When {
-                subscribeRx()
-                disableProvider()
-            }
-            Then {
-                providerDisabledReceived()
-            }
-        }
+  @Test
+  fun whenProviderBecomesAvailableLocationProviderEnabledChangedIsFired() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+        noLastKnownLocationAvailable()
+      }
+      When {
+        subscribeRx()
+        enableProvider()
+      }
+      Then {
+        providerEnabledReceived()
+      }
     }
+  }
+
+  @Test
+  fun whenProviderBecomesNotAvailableLocationProviderDisabledChangedIsFired() {
+    rxLocationTest(context) {
+      Given {
+        permissionIsGranted()
+        noLastKnownLocationAvailable()
+      }
+      When {
+        subscribeRx()
+        disableProvider()
+      }
+      Then {
+        providerDisabledReceived()
+      }
+    }
+  }
 }

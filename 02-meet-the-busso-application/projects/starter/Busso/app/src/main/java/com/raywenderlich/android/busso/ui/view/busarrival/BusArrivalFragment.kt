@@ -68,9 +68,9 @@ class BusArrivalFragment : Fragment() {
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? = inflater.inflate(R.layout.fragment_busarrival_layout, container, false).apply {
     busStopIndicator = findViewById(R.id.bus_stop_indicator)
     busStopName = findViewById(R.id.bus_stop_item_name)
@@ -102,12 +102,12 @@ class BusArrivalFragment : Fragment() {
     val busStopId = arguments?.getString(BUS_STOP_ID) ?: ""
     context?.let { ctx ->
       disposables.add(
-        provideBussoEndPoint(ctx)
-          .findArrivals(busStopId)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .map(::mapBusArrivals)
-          .subscribe(::handleBusArrival, ::handleBusArrivalError)
+          provideBussoEndPoint(ctx)
+              .findArrivals(busStopId)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .map(::mapBusArrivals)
+              .subscribe(::handleBusArrival, ::handleBusArrivalError)
       )
     }
   }
