@@ -73,6 +73,6 @@ internal fun mapBusArrival(arrival: BusArrival): BusArrivalViewModel =
     destination = arrival.destinationName
   )
 
-val DATE_FORMATTER = SimpleDateFormat("hh:mm", Locale.ENGLISH)
+val DATE_FORMATTER = SimpleDateFormat("HH:mm", Locale.ENGLISH)
 
 private fun expectedTime(expectedTime: Date) = DATE_FORMATTER.format(expectedTime)
