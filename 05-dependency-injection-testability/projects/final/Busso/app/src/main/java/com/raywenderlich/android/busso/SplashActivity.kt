@@ -59,11 +59,6 @@ import java.util.concurrent.TimeUnit
  */
 class SplashActivity : AppCompatActivity() {
 
-  companion object {
-    private const val DELAY_MILLIS = 1000L
-    private const val LOCATION_PERMISSION_REQUEST_ID = 1
-  }
-
   private val handler = Handler()
   private val disposables = CompositeDisposable()
   lateinit var locationObservable: Observable<LocationEvent>
@@ -169,4 +164,8 @@ class SplashActivity : AppCompatActivity() {
   private fun isPermissionEvent(locationEvent: LocationEvent) =
     locationEvent is LocationPermissionRequest || locationEvent is LocationPermissionGranted
 
+  companion object {
+    private const val DELAY_MILLIS = 1000L
+    private const val LOCATION_PERMISSION_REQUEST_ID = 1
+  }
 }

@@ -66,10 +66,6 @@ class BusArrivalFragment : Fragment() {
 
   lateinit var bussoEndpoint: BussoEndpoint
 
-  companion object {
-    const val BUS_STOP_ID = "BUS_STOP_ID"
-  }
-
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -132,5 +128,9 @@ class BusArrivalFragment : Fragment() {
 
   private fun handleBusArrivalError(error: Throwable) {
     // TODO Handle errors
+  }
+
+  companion object {
+    const val BUS_STOP_ID = "BUS_STOP_ID"
   }
 }
