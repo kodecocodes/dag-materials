@@ -33,9 +33,7 @@
  */
 package com.raywenderlich.android.daggerserverrepository
 
-import javax.inject.Inject
-
-class FakeRepository @Inject constructor() : Repository {
+class FakeRepository: Repository {
 
   var collection: MutableList<Data> = mutableListOf()
 
