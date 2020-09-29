@@ -61,9 +61,9 @@ interface BussoEndpoint {
    */
   @GET("${BUSSO_SERVER_BASE_URL}findBusStop/{lat}/{lng}")
   fun findBusStopByLocation(
-    @Path("lat") latitude: Double,
-    @Path("lng") longitude: Double,
-    @Query("radius") radius: Int
+      @Path("lat") latitude: Double,
+      @Path("lng") longitude: Double,
+      @Query("radius") radius: Int
   ): Single<List<BusStop>>
 
   /**
@@ -72,7 +72,7 @@ interface BussoEndpoint {
    */
   @GET("$BUSSO_SERVER_BASE_URL/findBusArrivals/{stopId}")
   fun findArrivals(
-    @Path("stopId") stopId: String
+      @Path("stopId") stopId: String
   ): Single<BusArrivals>
 }
 
@@ -80,17 +80,17 @@ interface BussoEndpoint {
 fun provideBussoEndPoint(context: Context): BussoEndpoint {
   val cache = Cache(context.cacheDir, CACHE_SIZE)
   val okHttpClient = OkHttpClient.Builder()
-    .cache(cache)
-    .build()
+      .cache(cache)
+      .build()
   val retrofit: Retrofit = Retrofit.Builder()
-    .baseUrl(BUSSO_SERVER_BASE_URL)
-    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-    .addConverterFactory(
-      GsonConverterFactory.create(
-        GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create()
+      .baseUrl(BUSSO_SERVER_BASE_URL)
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .addConverterFactory(
+          GsonConverterFactory.create(
+              GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create()
+          )
       )
-    )
-    .client(okHttpClient)
-    .build()
+      .client(okHttpClient)
+      .build()
   return retrofit.create(BussoEndpoint::class.java)
 }

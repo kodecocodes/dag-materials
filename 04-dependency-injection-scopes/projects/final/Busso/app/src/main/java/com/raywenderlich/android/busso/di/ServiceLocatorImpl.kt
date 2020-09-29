@@ -43,14 +43,14 @@ const val LOCATION_OBSERVABLE = "LocationObservable"
 const val ACTIVITY_LOCATOR_FACTORY = "ActivityLocatorFactory"
 
 class ServiceLocatorImpl(
-  val context: Context
+    val context: Context
 ) : ServiceLocator {
 
   private val locationManager =
-    context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+      context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
   private val geoLocationPermissionChecker = GeoLocationPermissionCheckerImpl(context)
   private val locationObservable =
-    provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
+      provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
 
   @Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
   override fun <A : Any> lookUp(name: String): A = when (name) {

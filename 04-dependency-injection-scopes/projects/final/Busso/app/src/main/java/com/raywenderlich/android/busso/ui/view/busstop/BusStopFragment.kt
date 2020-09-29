@@ -76,25 +76,25 @@ class BusStopFragment : Fragment() {
   private lateinit var busStopRecyclerView: RecyclerView
   private lateinit var navigator: Navigator
   private val busStopAdapter =
-    BusStopListAdapter(object :
-      OnItemSelectedListener<BusStopViewModel> {
-      override fun invoke(pos: Int, busStopViewModel: BusStopViewModel) {
-        navigator.navigateTo(
-          FragmentFactoryDestination(
-            fragmentFactory = { bundle ->
-              BusArrivalFragment().apply {
-                arguments = bundle
-              }
-            },
-            anchorId = R.id.anchor_point,
-            withBackStack = "BusArrival",
-            bundle = bundleOf(
-              BUS_STOP_ID to busStopViewModel.stopId
-            )
+      BusStopListAdapter(object :
+          OnItemSelectedListener<BusStopViewModel> {
+        override fun invoke(pos: Int, busStopViewModel: BusStopViewModel) {
+          navigator.navigateTo(
+              FragmentFactoryDestination(
+                  fragmentFactory = { bundle ->
+                    BusArrivalFragment().apply {
+                      arguments = bundle
+                    }
+                  },
+                  anchorId = R.id.anchor_point,
+                  withBackStack = "BusArrival",
+                  bundle = bundleOf(
+                      BUS_STOP_ID to busStopViewModel.stopId
+                  )
+              )
           )
-        )
-      }
-    })
+        }
+      })
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -104,9 +104,9 @@ class BusStopFragment : Fragment() {
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? = inflater.inflate(R.layout.fragment_busstop_layout, container, false).apply {
     busStopRecyclerView = findViewById(R.id.busstop_recyclerview)
     initRecyclerView(busStopRecyclerView)
@@ -123,7 +123,7 @@ class BusStopFragment : Fragment() {
   }
 
   private fun isLocationEvent(locationEvent: LocationEvent) =
-    locationEvent !is LocationPermissionRequest && locationEvent !is LocationPermissionGranted
+      locationEvent !is LocationPermissionRequest && locationEvent !is LocationPermissionGranted
 
   private fun handleLocationEvent(locationEvent: LocationEvent) {
     when (locationEvent) {
@@ -135,12 +135,12 @@ class BusStopFragment : Fragment() {
   private fun useLocation(location: GeoLocation) {
     context?.let { ctx ->
       disposables.add(
-        provideBussoEndPoint(ctx)
-          .findBusStopByLocation(location.latitude, location.longitude, 500)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .map(::mapBusStop)
-          .subscribe(busStopAdapter::submitList, ::handleBusStopError)
+          provideBussoEndPoint(ctx)
+              .findBusStopByLocation(location.latitude, location.longitude, 500)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .map(::mapBusStop)
+              .subscribe(busStopAdapter::submitList, ::handleBusStopError)
       )
     }
   }
@@ -151,34 +151,34 @@ class BusStopFragment : Fragment() {
 
   private fun displayLocationNotAvailable() {
     Snackbar.make(
-      busStopRecyclerView,
-      R.string.warning_location_not_available,
-      Snackbar.LENGTH_LONG
+        busStopRecyclerView,
+        R.string.warning_location_not_available,
+        Snackbar.LENGTH_LONG
     )
-      .setAction(R.string.message_retry) {
-        subscribeToLocation()
-      }
-      .show()
+        .setAction(R.string.message_retry) {
+          subscribeToLocation()
+        }
+        .show()
   }
 
   private fun handleError(error: Throwable) {
     Snackbar.make(
-      busStopRecyclerView,
-      R.string.error_problem_getting_location,
-      Snackbar.LENGTH_LONG
+        busStopRecyclerView,
+        R.string.error_problem_getting_location,
+        Snackbar.LENGTH_LONG
     )
-      .setAction(R.string.message_retry) {
-        subscribeToLocation()
-      }
-      .show()
+        .setAction(R.string.message_retry) {
+          subscribeToLocation()
+        }
+        .show()
   }
 
   private fun subscribeToLocation() {
     disposables.add(
-      locationObservable
-        .filter(::isLocationEvent)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(::handleLocationEvent, ::handleError)
+        locationObservable
+            .filter(::isLocationEvent)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::handleLocationEvent, ::handleError)
     )
   }
 
