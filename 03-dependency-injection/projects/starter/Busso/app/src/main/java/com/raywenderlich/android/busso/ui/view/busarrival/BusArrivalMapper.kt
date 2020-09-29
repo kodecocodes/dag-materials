@@ -45,21 +45,21 @@ import java.util.*
  * The ViewModel for the BusArrivals
  */
 internal fun mapBusArrivals(busArrivals: BusArrivals): BusArrivalsViewModel =
-  BusArrivalsViewModel(
-    mapBusStop(busArrivals.busStop),
-    busArrivals
-      .arrivalGroups
-      .map(::mapBusArrivalGroup)
-  )
+    BusArrivalsViewModel(
+        mapBusStop(busArrivals.busStop),
+        busArrivals
+            .arrivalGroups
+            .map(::mapBusArrivalGroup)
+    )
 
 /**
  * Maps the BusArrivalGroup into a BusArrivalGroupViewModel adding some decorations
  */
 internal fun mapBusArrivalGroup(busArrivalGroup: BusArrivalGroup): BusArrivalGroupViewModel {
   return BusArrivalGroupViewModel(
-    lineName = busArrivalGroup.lineName,
-    destination = busArrivalGroup.destination,
-    arrivals = busArrivalGroup.arrivals.map(::mapBusArrival)
+      lineName = busArrivalGroup.lineName,
+      destination = busArrivalGroup.destination,
+      arrivals = busArrivalGroup.arrivals.map(::mapBusArrival)
   )
 }
 
@@ -67,11 +67,11 @@ internal fun mapBusArrivalGroup(busArrivalGroup: BusArrivalGroup): BusArrivalGro
  * Maps an arrival times group into its viewmodel
  */
 internal fun mapBusArrival(arrival: BusArrival): BusArrivalViewModel =
-  BusArrivalViewModel(
-    expectedTime = expectedTime(arrival.expectedArrival),
-    vehicleId = arrival.vehicleId ?: "-",
-    destination = arrival.destinationName
-  )
+    BusArrivalViewModel(
+        expectedTime = expectedTime(arrival.expectedArrival),
+        vehicleId = arrival.vehicleId ?: "-",
+        destination = arrival.destinationName
+    )
 
 val DATE_FORMATTER = SimpleDateFormat("HH:mm", Locale.ENGLISH)
 

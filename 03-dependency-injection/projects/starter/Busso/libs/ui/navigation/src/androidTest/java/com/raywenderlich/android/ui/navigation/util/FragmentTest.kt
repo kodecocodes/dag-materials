@@ -43,16 +43,16 @@ import androidx.fragment.app.Fragment
 
 class FragmentTest : Fragment() {
 
-    companion object {
-        const val TEXTVIEW_ID = 777
-    }
+  companion object {
+    const val TEXTVIEW_ID = 777
+  }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = TextView(container?.context).apply {
-        id = TEXTVIEW_ID
-        text = "TestFragment"
-    }
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? = TextView(container?.context).apply {
+    id = TEXTVIEW_ID
+    text = "TestFragment"
+  }
 }
