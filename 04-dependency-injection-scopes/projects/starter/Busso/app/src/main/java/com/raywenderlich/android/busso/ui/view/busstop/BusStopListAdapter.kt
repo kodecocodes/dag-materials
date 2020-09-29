@@ -46,15 +46,15 @@ import com.raywenderlich.android.busso.ui.events.OnItemSelectedListener
 val DIFF_UTIL = object : DiffUtil.ItemCallback<BusStopViewModel>() {
 
   override fun areItemsTheSame(
-    oldItem: BusStopViewModel,
-    newItem: BusStopViewModel
+      oldItem: BusStopViewModel,
+      newItem: BusStopViewModel
   ): Boolean {
     return oldItem.stopId == newItem.stopId
   }
 
   override fun areContentsTheSame(
-    oldItem: BusStopViewModel,
-    newItem: BusStopViewModel
+      oldItem: BusStopViewModel,
+      newItem: BusStopViewModel
   ): Boolean {
     return oldItem.stopId == newItem.stopId &&
         oldItem.stopDistance == newItem.stopDistance
@@ -65,17 +65,17 @@ val DIFF_UTIL = object : DiffUtil.ItemCallback<BusStopViewModel>() {
  * The Adapter for the BusStopList
  */
 class BusStopListAdapter(
-  private val onItemSelectedListener: OnItemSelectedListener<BusStopViewModel>? = null
+    private val onItemSelectedListener: OnItemSelectedListener<BusStopViewModel>? = null
 ) :
-  ListAdapter<BusStopViewModel, BusStopItemViewHolder>(DIFF_UTIL) {
+    ListAdapter<BusStopViewModel, BusStopItemViewHolder>(DIFF_UTIL) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusStopItemViewHolder {
     val itemLayout =
-      LayoutInflater.from(parent.context)
-        .inflate(R.layout.busstop_list_item_layout, parent, false)
+        LayoutInflater.from(parent.context)
+            .inflate(R.layout.busstop_list_item_layout, parent, false)
     return BusStopItemViewHolder(
-      itemLayout,
-      onItemSelectedListener
+        itemLayout,
+        onItemSelectedListener
     )
   }
 
