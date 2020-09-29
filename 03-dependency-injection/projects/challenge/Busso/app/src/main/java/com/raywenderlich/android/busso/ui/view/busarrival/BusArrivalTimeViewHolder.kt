@@ -40,7 +40,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.busso.R
 
 class BusArrivalTimeViewHolder(
-  itemView: View
+    itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
   private val extectedTime = itemView.findViewById<TextView>(R.id.arrival_time)
