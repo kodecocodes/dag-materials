@@ -46,7 +46,7 @@ import com.raywenderlich.android.location.api.permissions.GeoLocationPermissionC
 class GeoLocationPermissionCheckerImpl(val context: Context) : GeoLocationPermissionChecker {
   override val isPermissionGiven: Boolean
     get() = ContextCompat.checkSelfPermission(
-      context,
-      Manifest.permission.ACCESS_FINE_LOCATION
+        context,
+        Manifest.permission.ACCESS_FINE_LOCATION
     ) == PackageManager.PERMISSION_GRANTED
 }

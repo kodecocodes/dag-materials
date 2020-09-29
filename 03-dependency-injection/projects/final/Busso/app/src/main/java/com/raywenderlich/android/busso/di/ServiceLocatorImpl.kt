@@ -46,14 +46,14 @@ const val LOCATION_OBSERVABLE = "LocationObservable"
  * Implementation for the ServiceLocator interface
  */
 class ServiceLocatorImpl(
-  val context: Context
+    val context: Context
 ) : ServiceLocator {
 
   private val locationManager =
-    context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+      context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
   private val geoLocationPermissionChecker = GeoLocationPermissionCheckerImpl(context)
   private val locationObservable =
-    provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
+      provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
 
   @Suppress("UNCHECKED_CAST")
   @SuppressLint("ServiceCast")

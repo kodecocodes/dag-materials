@@ -50,173 +50,173 @@ import kotlin.math.abs
 
 class LocationTestEnv(context: Context) {
 
-    private val MY_PROVIDER = "myProvider"
+  private val MY_PROVIDER = "myProvider"
 
-    fun Location.copy(time: Long) = Location(this.provider).apply {
-        this.latitude = latitude
-        this.longitude = longitude
-        this.time = time
+  fun Location.copy(time: Long) = Location(this.provider).apply {
+    this.latitude = latitude
+    this.longitude = longitude
+    this.time = time
+  }
+
+  private val LOCATION_1 = Location(provider()).apply {
+    latitude = 51.509865
+    longitude = -0.118092
+  }
+
+  private val LOCATION_2 = Location(provider()).apply {
+    latitude = 41.9028
+    longitude = 12.4964
+  }
+
+  val permissionChecker: GeoLocationPermissionChecker = mock<GeoLocationPermissionChecker>()
+  val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+  val testObserver = TestObserver<LocationEvent>()
+  val shadowLocationManager: ShadowLocationManager = shadowOf(locationManager)
+
+  lateinit var rxObservable: Observable<LocationEvent>
+
+  inner class Given {
+    fun permissionIsGranted(): Given {
+      Mockito.`when`(permissionChecker.isPermissionGiven).thenReturn(true)
+      return this
     }
 
-    private val LOCATION_1 = Location(provider()).apply {
-        latitude = 51.509865
-        longitude = -0.118092
+    fun permissionIsDenied(): Given {
+      Mockito.`when`(permissionChecker.isPermissionGiven).thenReturn(false)
+      return this
     }
 
-    private val LOCATION_2 = Location(provider()).apply {
-        latitude = 41.9028
-        longitude = 12.4964
+    fun lastKnownLocationIs(location: Location): Given {
+      shadowLocationManager.setLastKnownLocation(provider(), location)
+      return this
     }
 
-    val permissionChecker: GeoLocationPermissionChecker = mock<GeoLocationPermissionChecker>()
-    val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    val testObserver = TestObserver<LocationEvent>()
-    val shadowLocationManager: ShadowLocationManager = shadowOf(locationManager)
+    fun noLastKnownLocationAvailable(): Given {
+      shadowLocationManager.setLastKnownLocation(provider(), null)
+      return this
+    }
+  }
 
-    lateinit var rxObservable: Observable<LocationEvent>
-
-    inner class Given {
-        fun permissionIsGranted(): Given {
-            Mockito.`when`(permissionChecker.isPermissionGiven).thenReturn(true)
-            return this
-        }
-
-        fun permissionIsDenied(): Given {
-            Mockito.`when`(permissionChecker.isPermissionGiven).thenReturn(false)
-            return this
-        }
-
-        fun lastKnownLocationIs(location: Location): Given {
-            shadowLocationManager.setLastKnownLocation(provider(), location)
-            return this
-        }
-
-        fun noLastKnownLocationAvailable(): Given {
-            shadowLocationManager.setLastKnownLocation(provider(), null)
-            return this
-        }
+  inner class When {
+    fun subscribeRx(): When {
+      rxObservable =
+          provideRxLocationObservable(locationManager, permissionChecker, MY_PROVIDER, 0, 0F)
+      rxObservable
+          .subscribe(testObserver)
+      return this
     }
 
-    inner class When {
-        fun subscribeRx(): When {
-            rxObservable =
-                provideRxLocationObservable(locationManager, permissionChecker, MY_PROVIDER, 0, 0F)
-            rxObservable
-                .subscribe(testObserver)
-            return this
-        }
-
-        fun locationChangedTo(newLocation: Location): When {
-            shadowLocationManager.simulateLocation(newLocation)
-            return this
-        }
-
-        fun locationNotAvailable(): When {
-            shadowLocationManager.simulateLocation(null)
-            return this
-        }
-
-        fun enableProvider(): When {
-            shadowLocationManager.setProviderEnabled(provider(), true)
-            return this
-        }
-
-        fun disableProvider(): When {
-            shadowLocationManager.setProviderEnabled(provider(), false)
-            return this
-        }
+    fun locationChangedTo(newLocation: Location): When {
+      shadowLocationManager.simulateLocation(newLocation)
+      return this
     }
 
-    inner class Then {
-        fun permissionRequestIsFired() =
-            assertNotNull(testObserver.values().find {
-                it is LocationPermissionRequest && it.provider == MY_PROVIDER
-            })
-
-        fun permissionGrantedIsFired() =
-            assertNotNull(testObserver.values().find {
-                it is LocationPermissionGranted && it.provider == MY_PROVIDER
-            })
-
-        fun noPermissionRequestIsFired() {
-            testObserver.values().forEach {
-                assertFalse(it is LocationPermissionRequest)
-            }
-        }
-
-        /**
-         * Checks if the provided location is present in the result
-         */
-        fun containsLocation(latitude: Double, longitude: Double) {
-            val found = testObserver.values()
-                .filter { it is LocationData }
-                .map {
-                    (it as LocationData)
-                }.map {
-                    it.location
-                }.filter {
-                    abs(it.latitude - latitude) < 0.001 &&
-                            abs(it.longitude - longitude) < 0.001
-                }.firstOrNull()
-            assertTrue(found != null)
-        }
-
-        fun receivedLocationNotAvailable() =
-            assertNotNull(testObserver.values().find {
-                it is LocationNotAvailable && it.provider == MY_PROVIDER
-            })
-
-        fun providerEnabledReceived() {
-            val found = testObserver.values()
-                .filter { it is LocationProviderEnabledChanged }
-                .map {
-                    (it as LocationProviderEnabledChanged)
-                }.filter {
-                    it.enabled
-                }.firstOrNull()
-            assertTrue(found != null)
-        }
-
-        fun providerDisabledReceived() {
-            val found = testObserver.values()
-                .filter { it is LocationProviderEnabledChanged }
-                .map {
-                    (it as LocationProviderEnabledChanged)
-                }.filter {
-                    !it.enabled
-                }.firstOrNull()
-            assertTrue(found != null)
-        }
-
-        fun isComplete() {
-            testObserver.assertComplete()
-        }
+    fun locationNotAvailable(): When {
+      shadowLocationManager.simulateLocation(null)
+      return this
     }
 
-    fun Given(fn: Given.() -> Unit) {
-        val givenContext = Given()
-        givenContext.apply(fn)
+    fun enableProvider(): When {
+      shadowLocationManager.setProviderEnabled(provider(), true)
+      return this
     }
 
-    fun When(fn: When.() -> Unit) {
-        val whenContext = When()
-        whenContext.apply(fn)
+    fun disableProvider(): When {
+      shadowLocationManager.setProviderEnabled(provider(), false)
+      return this
+    }
+  }
+
+  inner class Then {
+    fun permissionRequestIsFired() =
+        assertNotNull(testObserver.values().find {
+          it is LocationPermissionRequest && it.provider == MY_PROVIDER
+        })
+
+    fun permissionGrantedIsFired() =
+        assertNotNull(testObserver.values().find {
+          it is LocationPermissionGranted && it.provider == MY_PROVIDER
+        })
+
+    fun noPermissionRequestIsFired() {
+      testObserver.values().forEach {
+        assertFalse(it is LocationPermissionRequest)
+      }
     }
 
-    fun Then(fn: Then.() -> Unit) {
-        val thenContext = Then()
-        thenContext.apply(fn)
+    /**
+     * Checks if the provided location is present in the result
+     */
+    fun containsLocation(latitude: Double, longitude: Double) {
+      val found = testObserver.values()
+          .filter { it is LocationData }
+          .map {
+            (it as LocationData)
+          }.map {
+            it.location
+          }.filter {
+            abs(it.latitude - latitude) < 0.001 &&
+                abs(it.longitude - longitude) < 0.001
+          }.firstOrNull()
+      assertTrue(found != null)
     }
 
-    fun provider(): String = MY_PROVIDER
+    fun receivedLocationNotAvailable() =
+        assertNotNull(testObserver.values().find {
+          it is LocationNotAvailable && it.provider == MY_PROVIDER
+        })
 
-    fun location1(time: Long = 0): Location = LOCATION_1.copy(time)
+    fun providerEnabledReceived() {
+      val found = testObserver.values()
+          .filter { it is LocationProviderEnabledChanged }
+          .map {
+            (it as LocationProviderEnabledChanged)
+          }.filter {
+            it.enabled
+          }.firstOrNull()
+      assertTrue(found != null)
+    }
 
-    fun location2(time: Long = 0): Location = LOCATION_2.copy(time)
+    fun providerDisabledReceived() {
+      val found = testObserver.values()
+          .filter { it is LocationProviderEnabledChanged }
+          .map {
+            (it as LocationProviderEnabledChanged)
+          }.filter {
+            !it.enabled
+          }.firstOrNull()
+      assertTrue(found != null)
+    }
+
+    fun isComplete() {
+      testObserver.assertComplete()
+    }
+  }
+
+  fun Given(fn: Given.() -> Unit) {
+    val givenContext = Given()
+    givenContext.apply(fn)
+  }
+
+  fun When(fn: When.() -> Unit) {
+    val whenContext = When()
+    whenContext.apply(fn)
+  }
+
+  fun Then(fn: Then.() -> Unit) {
+    val thenContext = Then()
+    thenContext.apply(fn)
+  }
+
+  fun provider(): String = MY_PROVIDER
+
+  fun location1(time: Long = 0): Location = LOCATION_1.copy(time)
+
+  fun location2(time: Long = 0): Location = LOCATION_2.copy(time)
 }
 
 
 fun rxLocationTest(context: Context, fn: LocationTestEnv.() -> Unit) {
-    val env = LocationTestEnv(context)
-    env.apply(fn)
+  val env = LocationTestEnv(context)
+  env.apply(fn)
 }

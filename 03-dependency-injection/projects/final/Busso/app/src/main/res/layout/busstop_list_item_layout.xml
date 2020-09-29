@@ -37,10 +37,10 @@
   android:id="@+id/bus_stop_info"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:transitionName="bus_stop_detail"
   card_view:cardBackgroundColor="@android:color/white"
   card_view:cardCornerRadius="4dp"
   card_view:cardElevation="6dp"
-  android:transitionName="bus_stop_detail"
   card_view:cardUseCompatPadding="true">
 
   <androidx.constraintlayout.widget.ConstraintLayout

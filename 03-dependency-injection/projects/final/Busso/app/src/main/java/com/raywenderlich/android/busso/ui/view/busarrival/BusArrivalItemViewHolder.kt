@@ -43,19 +43,19 @@ import com.raywenderlich.android.busso.R
  * The ViewHolder for the List of Arrivals for a BusStop
  */
 class BusArrivalItemViewHolder(
-  itemView: View
+    itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
   private val busArrivalLineName: TextView =
-    itemView.findViewById(R.id.bus_arrival_line_and_destination)
+      itemView.findViewById(R.id.bus_arrival_line_and_destination)
   private val arrivalTimesAdapter = BusArrivalTimeAdapter()
   private val timesRecyclerView: RecyclerView =
-    itemView.findViewById<RecyclerView>(R.id.bus_arrival_times_recyclerview).apply {
-      val viewManager =
-        LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-      layoutManager = viewManager
-      adapter = arrivalTimesAdapter
-    }
+      itemView.findViewById<RecyclerView>(R.id.bus_arrival_times_recyclerview).apply {
+        val viewManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        layoutManager = viewManager
+        adapter = arrivalTimesAdapter
+      }
 
 
   lateinit var busStopListModel: BusArrivalGroupViewModel
