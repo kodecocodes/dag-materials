@@ -38,6 +38,6 @@ import raydi.RayDiFactory
 
 fun main() {
   val server: Server = RayDiFactory()
-    .get(Server::class)
+      .get(Server::class)
   server.receive(Data("Hello"))
 }

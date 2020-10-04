@@ -60,8 +60,8 @@ class RayDaggerProcessor : AbstractProcessor() {
   }
 
   override fun process(
-    annotations: MutableSet<out TypeElement>,
-    roundEnv: RoundEnvironment
+      annotations: MutableSet<out TypeElement>,
+      roundEnv: RoundEnvironment
   ): Boolean {
     val casesOptions = mutableMapOf<ClassName, ClassName>()
     roundEnv.getElementsAnnotatedWith(RayDi::class.java).forEach { element ->
@@ -76,44 +76,44 @@ class RayDaggerProcessor : AbstractProcessor() {
 
   fun createObjectFactories(element: Element, cases: MutableMap<ClassName, ClassName>) {
     val generatedSourcesRoot: String =
-      processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
+        processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
     val file = File(generatedSourcesRoot)
-      .apply {
-        mkdir()
-      }
+        .apply {
+          mkdir()
+        }
     val packageForFactory = processingEnv.elementUtils.getPackageOf(element).toString()
     val targetClassName = (element as TypeElement).simpleName.toString()
     val objectFactoryClassName = "${targetClassName}_RayDiFactory"
     val targetClass = ClassName(packageForFactory, targetClassName)
     val objectFactoryInterfaceName = ClassName(
-      "com.raywenderlich.android.raydi",
-      "RayDiObjectFactory"
+        "com.raywenderlich.android.raydi",
+        "RayDiObjectFactory"
     ).parameterizedBy(targetClass)
     cases[targetClass] = ClassName(packageForFactory, objectFactoryClassName)
     FileSpec.builder(packageForFactory, objectFactoryClassName)
-      .addType(
-        TypeSpec.classBuilder(objectFactoryClassName)
-          .addSuperinterface(objectFactoryInterfaceName)
-          .addFunction(
-            FunSpec.builder("create")
-              .returns(targetClass)
-              .addStatement("return %T()", targetClass)
-              .addModifiers(KModifier.OVERRIDE)
-              .build()
-          )
-          .build()
-      )
-      .build()
-      .writeTo(file)
+        .addType(
+            TypeSpec.classBuilder(objectFactoryClassName)
+                .addSuperinterface(objectFactoryInterfaceName)
+                .addFunction(
+                    FunSpec.builder("create")
+                        .returns(targetClass)
+                        .addStatement("return %T()", targetClass)
+                        .addModifiers(KModifier.OVERRIDE)
+                        .build()
+                )
+                .build()
+        )
+        .build()
+        .writeTo(file)
   }
 
   fun createObjectFactoriesForBind(element: Element, cases: MutableMap<ClassName, ClassName>) {
     val generatedSourcesRoot: String =
-      processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
+        processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
     val file = File(generatedSourcesRoot)
-      .apply {
-        mkdir()
-      }
+        .apply {
+          mkdir()
+        }
     val packageForFactory = processingEnv.elementUtils.getPackageOf(element).toString()
     val targetKClass = element.getAnnotationClassValue<RayBind> {
       interfaceClazz
@@ -125,30 +125,30 @@ class RayDaggerProcessor : AbstractProcessor() {
     val targetClass = ClassName(packageForFactory, nameForType.simpleName.toString())
     val actualTargetClass = ClassName(packageForFactory, targetClassName)
     val ObjectFactoryInterfaceName = ClassName(
-      "com.raywenderlich.android.raydi",
-      "RayDiObjectFactory"
+        "com.raywenderlich.android.raydi",
+        "RayDiObjectFactory"
     ).parameterizedBy(targetClass)
     cases[targetClass] = ClassName(packageForFactory, objectFactoryClassName)
     FileSpec.builder(packageForFactory, objectFactoryClassName)
-      .addType(
-        TypeSpec.classBuilder(objectFactoryClassName)
-          .addSuperinterface(ObjectFactoryInterfaceName)
-          .addFunction(
-            FunSpec.builder("create")
-              .returns(targetClass)
-              .addStatement("return %T()", actualTargetClass)
-              .addModifiers(KModifier.OVERRIDE)
-              .build()
-          )
-          .build()
-      )
-      .build()
-      .writeTo(file)
+        .addType(
+            TypeSpec.classBuilder(objectFactoryClassName)
+                .addSuperinterface(ObjectFactoryInterfaceName)
+                .addFunction(
+                    FunSpec.builder("create")
+                        .returns(targetClass)
+                        .addStatement("return %T()", actualTargetClass)
+                        .addModifiers(KModifier.OVERRIDE)
+                        .build()
+                )
+                .build()
+        )
+        .build()
+        .writeTo(file)
   }
 
   data class InjectInfo(
-    val propertyName: String, // The name of the property
-    val targetClassName: ClassName // The classname for the factory to invoke
+      val propertyName: String, // The name of the property
+      val targetClassName: ClassName // The classname for the factory to invoke
   )
 
   fun createMainFactory(roundEnv: RoundEnvironment, cases: MutableMap<ClassName, ClassName>) {
@@ -158,36 +158,36 @@ class RayDaggerProcessor : AbstractProcessor() {
     processingEnv.messager.noteMessage { "CASES : ${cases} " }
 
     val generatedSourcesRoot: String =
-      processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
+        processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
     val file = File(generatedSourcesRoot)
     file.mkdir()
     val RayDiFactoryName = ClassName(
-      "raydi", "RayDiFactory"
+        "raydi", "RayDiFactory"
     )
     val funcBuilder = FunSpec.builder("get")
-      .addTypeVariable(TypeVariableName("T"))
-      .returns(TypeVariableName("T"))
-      .addAnnotation(
-        AnnotationSpec.builder(
-          ClassName(
-            "kotlin", "Suppress"
-          )
-        ).addMember("\"UNCHECKED_CAST\"")
-          .build()
-      )
-      .addParameter(
-        ParameterSpec.builder(
-          "type",
-          KClass::class.asClassName().parameterizedBy(WildcardTypeName.producerOf(ANY))
-        ).build()
-      ).beginControlFlow("val target = when(type)")
+        .addTypeVariable(TypeVariableName("T"))
+        .returns(TypeVariableName("T"))
+        .addAnnotation(
+            AnnotationSpec.builder(
+                ClassName(
+                    "kotlin", "Suppress"
+                )
+            ).addMember("\"UNCHECKED_CAST\"")
+                .build()
+        )
+        .addParameter(
+            ParameterSpec.builder(
+                "type",
+                KClass::class.asClassName().parameterizedBy(WildcardTypeName.producerOf(ANY))
+            ).build()
+        ).beginControlFlow("val target = when(type)")
 
     // We search for the property to inject in the different classes
     val propertyToInjectMap = mutableMapOf<ClassName, MutableList<InjectInfo>>()
     roundEnv.getElementsAnnotatedWith(RayInject::class.java).forEach { element ->
       // The target of the injection
       val enclosingClassPackage =
-        processingEnv.elementUtils.getPackageOf(element.enclosingElement).toString()
+          processingEnv.elementUtils.getPackageOf(element.enclosingElement).toString()
       val enclosingClassSimpleName = (element.enclosingElement as TypeElement).simpleName.toString()
       val enclosingClassName = ClassName(enclosingClassPackage, enclosingClassSimpleName)
       // Information about the field to inject
@@ -204,36 +204,36 @@ class RayDaggerProcessor : AbstractProcessor() {
 
     cases.keys.forEach { typeCase ->
       funcBuilder.addCode(
-        injectionBlock(
-          typeCase,
-          cases,
-          propertyToInjectMap[typeCase]
-        )
+          injectionBlock(
+              typeCase,
+              cases,
+              propertyToInjectMap[typeCase]
+          )
       )
     }
     funcBuilder
-      .addStatement("else -> throw IllegalStateException()")
-      .endControlFlow()
-      .addStatement("return target as T")
+        .addStatement("else -> throw IllegalStateException()")
+        .endControlFlow()
+        .addStatement("return target as T")
     FileSpec.builder("raydi", "RayDiFactory")
-      .addType(
-        TypeSpec.classBuilder(RayDiFactoryName)
-          .addFunction(
-            funcBuilder.build()
-          )
-          .build()
-      )
-      .build()
-      .writeTo(file)
+        .addType(
+            TypeSpec.classBuilder(RayDiFactoryName)
+                .addFunction(
+                    funcBuilder.build()
+                )
+                .build()
+        )
+        .build()
+        .writeTo(file)
   }
 
   fun injectionBlock(
-    key: ClassName,
-    cases: MutableMap<ClassName, ClassName>,
-    injectionList: MutableList<InjectInfo>?
+      key: ClassName,
+      cases: MutableMap<ClassName, ClassName>,
+      injectionList: MutableList<InjectInfo>?
   ): CodeBlock {
     val blockBuilder = CodeBlock.builder()
-      .addStatement("%T::class -> %T().create()", key, cases[key]!!)
+        .addStatement("%T::class -> %T().create()", key, cases[key]!!)
     if (!injectionList.isNullOrEmpty()) {
       blockBuilder.addStatement(".apply {")
       injectionList.forEach {
@@ -255,9 +255,9 @@ class RayDaggerProcessor : AbstractProcessor() {
 
   override fun getSupportedAnnotationTypes(): MutableSet<String> {
     return mutableSetOf(
-      RayInject::class.java.canonicalName,
-      RayBind::class.java.canonicalName,
-      RayDi::class.java.canonicalName
+        RayInject::class.java.canonicalName,
+        RayBind::class.java.canonicalName,
+        RayDi::class.java.canonicalName
     )
   }
 
