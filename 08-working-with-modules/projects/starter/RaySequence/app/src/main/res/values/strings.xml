@@ -1,0 +1,4 @@
+<resources>
+  <string name="app_name">RaySequence</string>
+  <string name="next_value_button_label">Next</string>
+</resources>
