@@ -33,7 +33,7 @@
  */
 package com.raywenderlich.android.daggerserverrepository
 
-class FakeRepository: Repository {
+class FakeRepository : Repository {
 
   var collection: MutableList<Data> = mutableListOf()
 
