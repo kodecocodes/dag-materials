@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">RaySequence</string>
+  <string name="next_value_button_label">Next</string>
+  <string name="value_output_format">N: %1$d</string>
+</resources>
