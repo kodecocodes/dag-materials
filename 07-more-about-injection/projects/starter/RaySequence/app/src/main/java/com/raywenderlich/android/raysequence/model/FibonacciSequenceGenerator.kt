@@ -37,7 +37,7 @@
 package com.raywenderlich.android.raysequence.model
 
 /** SequenceGenerator for the Fibonacci sequence*/
-class FibonacciSequenceGenerator() : SequenceGenerator<Int> {
+class FibonacciSequenceGenerator : SequenceGenerator<Int> {
 
   private var pair = 0 to 1
 

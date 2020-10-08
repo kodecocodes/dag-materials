@@ -47,6 +47,7 @@ class SequenceViewBinderImpl(
 ) : SequenceViewBinder {
 
   private lateinit var output: TextView
+
   override fun showNextValue(nextValue: Int) {
     output.text = "$nextValue"
   }

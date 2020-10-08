@@ -47,11 +47,8 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class SplashActivity : AppCompatActivity() {
 
-  companion object {
-    private const val DELAY_MILLIS = 1000L
-  }
-
   private val handler = Handler()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     makeFullScreen()
@@ -76,5 +73,9 @@ class SplashActivity : AppCompatActivity() {
         WindowManager.LayoutParams.FLAG_FULLSCREEN
     )
     supportActionBar?.hide()
+  }
+
+  companion object {
+    private const val DELAY_MILLIS = 1000L
   }
 }
