@@ -40,9 +40,11 @@ import com.raywenderlich.android.raysequence.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [
-  AppModule::class,
-  RandomModule::class])
+@Component(
+    modules = [
+      AppModule::class,
+      RandomModule::class]
+)
 @Singleton
 interface AppComponent {
 
