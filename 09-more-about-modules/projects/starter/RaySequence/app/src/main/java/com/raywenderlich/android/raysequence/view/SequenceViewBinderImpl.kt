@@ -48,11 +48,12 @@ class SequenceViewBinderImpl @Inject constructor(
     private val sequenceViewListener: SequenceViewBinder.Listener
 ) : SequenceViewBinder {
 
+  private lateinit var output: TextView
+
   init {
     Log.d("DAGGER_LOG", "Listener: $sequenceViewListener")
   }
 
-  private lateinit var output: TextView
   override fun showNextValue(nextValue: Int) {
     output.text = "$nextValue"
   }

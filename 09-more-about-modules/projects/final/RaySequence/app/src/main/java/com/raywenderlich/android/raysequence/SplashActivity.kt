@@ -47,11 +47,8 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class SplashActivity : AppCompatActivity() {
 
-  companion object {
-    private const val DELAY_MILLIS = 1000L
-  }
-
   private val handler = Handler()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     makeFullScreen()
@@ -60,7 +57,7 @@ class SplashActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
-    handler.postDelayed(Runnable {
+    handler.postDelayed({
       if (!isFinishing) {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         startActivity(Intent(this, MainActivity::class.java))
@@ -76,5 +73,9 @@ class SplashActivity : AppCompatActivity() {
         WindowManager.LayoutParams.FLAG_FULLSCREEN
     )
     supportActionBar?.hide()
+  }
+
+  companion object {
+    private const val DELAY_MILLIS = 1000L
   }
 }
