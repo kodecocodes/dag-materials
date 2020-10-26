@@ -51,7 +51,6 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.P])
 class BusStopListPresenterImplTest {
-
   lateinit var presenter: BusStopListPresenter
   lateinit var navigator: Navigator
   lateinit var locationObservable: PublishSubject<LocationEvent>

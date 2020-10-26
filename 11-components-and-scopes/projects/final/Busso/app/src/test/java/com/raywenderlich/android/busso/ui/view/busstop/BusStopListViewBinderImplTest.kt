@@ -86,7 +86,7 @@ class BusStopListViewBinderImplTest {
     val activity = activityController.get()
     val rootView = createLayoutForTest(activity)
     activity.setContentView(rootView)
-    activityController.create().start().visible();
+    activityController.create().start().visible()
     with(busStopListViewBinder) {
       init(rootView)
       displayBusStopList(testData)

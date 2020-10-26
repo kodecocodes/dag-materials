@@ -91,7 +91,7 @@ class BusArrivalViewBinderImplTest {
         "stopIndicator",
         "distance"
     )
-    val arrivals = listOf<BusArrivalGroupViewModel>(
+    val arrivals = listOf(
         BusArrivalGroupViewModel("line1", "destination1"),
         BusArrivalGroupViewModel("line2", "destination2"),
         BusArrivalGroupViewModel("line3", "destination3")

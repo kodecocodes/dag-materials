@@ -55,7 +55,8 @@ interface FragmentModule {
   fun bindBusStopListPresenter(impl: BusStopListPresenterImpl): BusStopListPresenter
 
   @Binds
-  fun bindBusStopListViewBinderListener(impl: BusStopListPresenterImpl): BusStopListViewBinder.BusStopItemSelectedListener
+  fun bindBusStopListViewBinderListener(impl: BusStopListPresenterImpl)
+          : BusStopListViewBinder.BusStopItemSelectedListener
 
   @Binds
   fun bindBusArrivalPresenter(impl: BusArrivalPresenterImpl): BusArrivalPresenter

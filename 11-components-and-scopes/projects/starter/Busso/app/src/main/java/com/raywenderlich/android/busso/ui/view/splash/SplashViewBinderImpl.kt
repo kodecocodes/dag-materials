@@ -48,11 +48,6 @@ import javax.inject.Inject
 class SplashViewBinderImpl @Inject constructor(
     private val navigator: Navigator
 ) : SplashViewBinder {
-
-  companion object {
-    private const val LOCATION_PERMISSION_REQUEST_ID = 1
-  }
-
   private val handler = Handler()
   private lateinit var splashActivity: SplashActivity
 
@@ -103,5 +98,9 @@ class SplashViewBinderImpl @Inject constructor(
         }
       }
     }
+  }
+
+  companion object {
+    private const val LOCATION_PERMISSION_REQUEST_ID = 1
   }
 }

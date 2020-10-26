@@ -50,16 +50,11 @@ import javax.inject.Inject
  * The Fragment for displaying the arrival time
  */
 class BusArrivalFragment : Fragment() {
-
   @Inject
   lateinit var busArrivalViewBinder: BusArrivalViewBinder
 
   @Inject
   lateinit var busArrivalPresenter: BusArrivalPresenter
-
-  companion object {
-    const val BUS_STOP_ID = "BUS_STOP_ID"
-  }
 
   override fun onAttach(context: Context) {
     with(context) {
@@ -89,5 +84,9 @@ class BusArrivalFragment : Fragment() {
     busArrivalPresenter.unbind()
     busArrivalPresenter.stop()
     super.onStop()
+  }
+
+  companion object {
+    const val BUS_STOP_ID = "BUS_STOP_ID"
   }
 }

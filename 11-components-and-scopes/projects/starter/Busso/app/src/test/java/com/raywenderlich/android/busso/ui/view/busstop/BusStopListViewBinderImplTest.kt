@@ -49,11 +49,9 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 
-
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.P])
 class BusStopListViewBinderImplTest {
-
   private lateinit var busStopListViewBinder: BusStopListViewBinder
   private lateinit var fakeBusStopItemSelectedListener: FakeBusStopItemSelectedListener
   private lateinit var activityController: ActivityController<Activity>
