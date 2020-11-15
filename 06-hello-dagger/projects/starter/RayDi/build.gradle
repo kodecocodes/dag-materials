@@ -1,0 +1,23 @@
+buildscript {
+  ext.kotlin_version = '1.4.10'
+  ext.kotlinpoet_version = '1.6.0'
+  ext.auto_service_version = '1.0-rc2'
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
