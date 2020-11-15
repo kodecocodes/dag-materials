@@ -1,0 +1,3 @@
+include ':app'
+include ':libs:mvp'
+rootProject.name = "RaySequence"
