@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Busso</string>
+  <string name="warning_location_not_available">Getting location data.... Please wait!</string>
+  <string name="error_problem_getting_location">There\'s some problem getting the location. </string>
+
+  <string name="message_retry">Retry</string>
+
+</resources>

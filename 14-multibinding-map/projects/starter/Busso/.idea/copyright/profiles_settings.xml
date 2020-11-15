@@ -1,0 +1,8 @@
+<component name="CopyrightManager">
+  <settings default="RayWenderlich Copyright">
+    <module2copyright>
+      <element module="Project Source Files" copyright="RayWenderlich Copyright" />
+    </module2copyright>
+    <LanguageOptions name="Kotlin" />
+  </settings>
+</component>
