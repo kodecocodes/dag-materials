@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="bus_stop_indicator_test_size">24sp</dimen>
+  <dimen name="bus_stop_name_text_size">24sp</dimen>
+  <dimen name="bus_stop_direction_text_size">18sp</dimen>
+  <dimen name="bus_stop_distance_text_size">14sp</dimen>
+</resources>
