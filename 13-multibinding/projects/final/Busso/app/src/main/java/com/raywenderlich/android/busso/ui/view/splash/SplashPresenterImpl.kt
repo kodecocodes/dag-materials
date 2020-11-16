@@ -37,7 +37,7 @@ package com.raywenderlich.android.busso.ui.view.splash
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.model.LocationPermissionGranted
 import com.raywenderlich.android.location.api.model.LocationPermissionRequest
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
@@ -47,10 +47,6 @@ import javax.inject.Inject
 class SplashPresenterImpl @Inject constructor(
     private val locationObservable: Observable<LocationEvent>,
 ) : BasePresenter<SplashActivity, SplashViewBinder>(), SplashPresenter {
-
-  companion object {
-    private const val DELAY_MILLIS = 1000L
-  }
 
   private val disposables = CompositeDisposable()
 
@@ -82,5 +78,9 @@ class SplashPresenterImpl @Inject constructor(
     useViewBinder {
       handleError(error)
     }
+  }
+
+  companion object {
+    private const val DELAY_MILLIS = 1000L
   }
 }

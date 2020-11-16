@@ -55,10 +55,6 @@ class BusArrivalFragment : Fragment() {
   @Inject
   lateinit var busArrivalPresenter: BusArrivalPresenter
 
-  companion object {
-    const val BUS_STOP_ID = "BUS_STOP_ID"
-  }
-
   override fun onAttach(context: Context) {
     context.activityComp
         .fragmentComponent()
@@ -85,5 +81,9 @@ class BusArrivalFragment : Fragment() {
     busArrivalPresenter.unbind()
     busArrivalPresenter.stop()
     super.onStop()
+  }
+
+  companion object {
+    const val BUS_STOP_ID = "BUS_STOP_ID"
   }
 }

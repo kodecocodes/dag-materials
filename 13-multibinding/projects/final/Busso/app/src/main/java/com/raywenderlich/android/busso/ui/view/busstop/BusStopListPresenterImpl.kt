@@ -43,7 +43,7 @@ import com.raywenderlich.android.busso.network.BussoEndpoint
 import com.raywenderlich.android.busso.ui.view.busarrival.BusArrivalFragment
 import com.raywenderlich.android.busso.ui.view.busarrival.BusArrivalFragment.Companion.BUS_STOP_ID
 import com.raywenderlich.android.location.api.model.*
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import com.raywenderlich.android.ui.navigation.FragmentFactoryDestination
 import com.raywenderlich.android.ui.navigation.Navigator
 import io.reactivex.Observable
@@ -60,11 +60,11 @@ class BusStopListPresenterImpl @Inject constructor(
 ) : BasePresenter<View, BusStopListViewBinder>(),
     BusStopListPresenter {
 
+  private val disposables = CompositeDisposable()
+
   init {
     Log.d("BUSSOENDPOINT", "StopList: $bussoEndpoint")
   }
-
-  private val disposables = CompositeDisposable()
 
   override fun start() {
     disposables.add(

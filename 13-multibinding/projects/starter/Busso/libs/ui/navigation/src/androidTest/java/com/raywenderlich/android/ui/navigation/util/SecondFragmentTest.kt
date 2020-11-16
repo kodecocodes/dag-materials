@@ -43,10 +43,6 @@ import androidx.fragment.app.Fragment
 
 class SecondFragmentTest : Fragment() {
 
-  companion object {
-    const val TEXTVIEW_ID = 777
-  }
-
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
@@ -54,5 +50,9 @@ class SecondFragmentTest : Fragment() {
   ): View? = TextView(container?.context).apply {
     id = TEXTVIEW_ID
     text = "SecondTestFragment"
+  }
+
+  companion object {
+    const val TEXTVIEW_ID = 777
   }
 }

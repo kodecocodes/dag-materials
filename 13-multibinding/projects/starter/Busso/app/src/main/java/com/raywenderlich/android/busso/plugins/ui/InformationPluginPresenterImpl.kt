@@ -41,7 +41,7 @@ import com.raywenderlich.android.location.api.model.LocationData
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.model.LocationPermissionGranted
 import com.raywenderlich.android.location.api.model.LocationPermissionRequest
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -78,7 +78,7 @@ class BusStopListViewBinderImpl @Inject constructor(
         msg,
         Snackbar.LENGTH_LONG
     ).setAction(R.string.message_retry) {
-      busStopItemSelectedListener?.retry()
+      busStopItemSelectedListener.retry()
     }.show()
   }
 }

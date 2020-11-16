@@ -61,8 +61,8 @@ class BusStopListPresenterImplTest {
   @Before
   fun setUp() {
     navigator = mock(Navigator::class.java)
-    locationObservable = PublishSubject.create();
-    bussoEndpoint = mock(BussoEndpoint::class.java)
+    locationObservable = PublishSubject.create()
+      bussoEndpoint = mock(BussoEndpoint::class.java)
     busStopListViewBinder = mock(BusStopListViewBinder::class.java)
     presenter = BusStopListPresenterImpl(
         navigator,

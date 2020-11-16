@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.busso.ui.view.splash
 
-import com.raywenderlich.android.mvp.Presenter
+import com.raywenderlich.android.ui.mvp.Presenter
 
 /** The Presenter for the SplashActivity */
 interface SplashPresenter : Presenter<SplashActivity, SplashViewBinder> {

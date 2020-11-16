@@ -38,7 +38,7 @@ import android.view.View
 import com.raywenderlich.android.busso.di.scopes.FragmentScope
 import com.raywenderlich.android.busso.plugins.api.InformationPluginRegistry
 import com.raywenderlich.android.location.api.model.*
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
