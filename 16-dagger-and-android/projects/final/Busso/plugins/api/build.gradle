@@ -1,0 +1,60 @@
+plugins {
+  id 'com.android.library'
+  id 'kotlin-android'
+  id "kotlin-kapt"
+}
+apply from: '../../versions.gradle'
+
+android {
+  compileSdkVersion compile_sdk_version
+  buildToolsVersion build_tool_version
+
+  defaultConfig {
+    minSdkVersion 24
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    consumerProguardFiles "consumer-rules.pro"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+}
+
+dependencies {
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  // Custom scopes
+  api project(path: ':libs:di:scopes')
+
+  // Dagger dependencies
+  api "com.google.dagger:dagger:$dagger_version"
+  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+  // Auto value
+  api "com.google.auto.value:auto-value-annotations:$autovalue_annotation_version"
+  kapt "com.google.auto.value:auto-value:$autovalue_version"
+
+  // Rx Dependencies
+  api "io.reactivex.rxjava2:rxkotlin:$rxjava_kotlin_ext_version"
+  api "io.reactivex.rxjava2:rxandroid:$rx_android_lib_version"
+
+  // Testing libraries
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_version"
+  testImplementation "org.robolectric:robolectric:$robolectric_version"
+}
