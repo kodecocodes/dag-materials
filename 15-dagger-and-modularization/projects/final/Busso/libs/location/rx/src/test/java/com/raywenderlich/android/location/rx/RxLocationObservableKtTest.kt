@@ -47,7 +47,7 @@ import org.robolectric.RuntimeEnvironment
 )
 class RxLocationObservableKtTest {
 
-  lateinit var context: Context
+  private lateinit var context: Context
 
   @Before
   fun setUp() {

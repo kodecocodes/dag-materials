@@ -49,7 +49,7 @@ internal class InformationPluginRegistryImpl @Inject constructor(
   informationPlugins: @JvmSuppressWildcards Map<ComplexInfoKey, InformationPluginSpec>
 ) : InformationPluginRegistry {
 
-  val endpoints = informationPlugins.keys.map { complexKey ->
+  private val endpoints = informationPlugins.keys.map { complexKey ->
     retrofit.create(complexKey.endpointClass.java as Class<*>) // 2
   }.map { endpoint ->
     endpoint as InformationEndpoint

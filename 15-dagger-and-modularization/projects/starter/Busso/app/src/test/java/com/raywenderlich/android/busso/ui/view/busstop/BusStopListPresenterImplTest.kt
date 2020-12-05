@@ -52,16 +52,16 @@ import org.robolectric.annotation.Config
 @Config(sdk = [Build.VERSION_CODES.P])
 class BusStopListPresenterImplTest {
 
-  lateinit var presenter: BusStopListPresenter
-  lateinit var navigator: Navigator
-  lateinit var locationObservable: PublishSubject<LocationEvent>
-  lateinit var bussoEndpoint: BussoEndpoint
-  lateinit var busStopListViewBinder: BusStopListViewBinder
+  private lateinit var presenter: BusStopListPresenter
+  private lateinit var navigator: Navigator
+  private lateinit var locationObservable: PublishSubject<LocationEvent>
+  private lateinit var bussoEndpoint: BussoEndpoint
+  private lateinit var busStopListViewBinder: BusStopListViewBinder
 
   @Before
   fun setUp() {
     navigator = mock(Navigator::class.java)
-    locationObservable = PublishSubject.create();
+    locationObservable = PublishSubject.create()
     bussoEndpoint = mock(BussoEndpoint::class.java)
     busStopListViewBinder = mock(BusStopListViewBinder::class.java)
     presenter = BusStopListPresenterImpl(

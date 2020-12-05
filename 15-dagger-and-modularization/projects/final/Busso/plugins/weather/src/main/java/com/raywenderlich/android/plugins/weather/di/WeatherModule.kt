@@ -32,9 +32,9 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.busso.plugins.wether.di
+package com.raywenderlich.android.plugins.weather.di
 
-import com.raywenderlich.android.busso.plugins.wether.endpoint.WeatherEndpoint
+import com.raywenderlich.android.plugins.weather.endpoint.WeatherEndpoint
 import com.raywenderlich.android.di.scopes.ApplicationScope
 import com.raywenderlich.android.plugins.api.ComplexInfoKey
 import com.raywenderlich.android.plugins.api.InformationPluginSpec

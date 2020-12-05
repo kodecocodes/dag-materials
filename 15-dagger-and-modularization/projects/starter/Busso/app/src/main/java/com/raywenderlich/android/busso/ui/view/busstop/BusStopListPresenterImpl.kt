@@ -43,7 +43,7 @@ import com.raywenderlich.android.busso.ui.view.busarrival.BusArrivalFragment
 import com.raywenderlich.android.busso.ui.view.busarrival.BusArrivalFragment.Companion.BUS_STOP_ID
 import com.raywenderlich.android.di.scopes.FragmentScope
 import com.raywenderlich.android.location.api.model.*
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import com.raywenderlich.android.ui.navigation.FragmentFactoryDestination
 import com.raywenderlich.android.ui.navigation.Navigator
 import io.reactivex.Observable

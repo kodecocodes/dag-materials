@@ -37,7 +37,7 @@ package com.raywenderlich.android.location.di
 import android.app.Application
 import android.content.Context
 import android.location.LocationManager
-import com.raywenderlich.android.busso.permission.GeoLocationPermissionCheckerImpl
+import com.raywenderlich.android.location.permission.GeoLocationPermissionCheckerImpl
 import com.raywenderlich.android.di.scopes.ApplicationScope
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.permissions.GeoLocationPermissionChecker

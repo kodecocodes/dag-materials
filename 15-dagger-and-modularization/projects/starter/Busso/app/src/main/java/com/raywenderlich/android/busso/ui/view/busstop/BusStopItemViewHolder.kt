@@ -55,7 +55,7 @@ class BusStopItemViewHolder(
   private val busStopDistanceTextView: TextView =
     itemView.findViewById(R.id.bus_stop_item_distance)
 
-  lateinit var busStopListModel: BusStopViewModel
+  private lateinit var busStopListModel: BusStopViewModel
 
   fun bind(position: Int, itemViewModel: BusStopViewModel) {
     busStopListModel = itemViewModel

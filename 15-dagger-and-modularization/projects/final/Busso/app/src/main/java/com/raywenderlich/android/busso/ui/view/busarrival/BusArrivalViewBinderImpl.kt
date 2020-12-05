@@ -56,14 +56,12 @@ class BusArrivalViewBinderImpl @Inject constructor() : BusArrivalViewBinder {
   private lateinit var busStopDirection: TextView
 
   override fun init(rootView: View) {
-    with(rootView) {
-      busStopIndicator = findViewById(R.id.bus_stop_indicator)
-      busStopName = findViewById(R.id.bus_stop_item_name)
-      busStopDistance = findViewById(R.id.bus_stop_item_distance)
-      busStopDirection = findViewById(R.id.bus_stop_item_direction)
-      busArrivalRecyclerView = findViewById(R.id.busarrival_recyclerview)
+      busStopIndicator = rootView.findViewById(R.id.bus_stop_indicator)
+      busStopName = rootView.findViewById(R.id.bus_stop_item_name)
+      busStopDistance = rootView.findViewById(R.id.bus_stop_item_distance)
+      busStopDirection = rootView.findViewById(R.id.bus_stop_item_direction)
+      busArrivalRecyclerView = rootView.findViewById(R.id.busarrival_recyclerview)
       initRecyclerView(busArrivalRecyclerView)
-    }
   }
 
   /** Display the BusArrival information */

@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.busso.plugins.wether.endpoint
+package com.raywenderlich.android.plugins.weather.endpoint
 
 import com.raywenderlich.android.plugins.api.InformationEndpoint
 import com.raywenderlich.android.plugins.model.InfoMessage

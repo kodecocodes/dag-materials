@@ -35,7 +35,7 @@
 package com.raywenderlich.android.busso.plugins.ui
 
 import android.view.View
-import com.raywenderlich.android.mvp.ViewBinder
+import com.raywenderlich.android.ui.mvp.ViewBinder
 
 /** Abstraction for the InformationPluginViewBinder */
 interface InformationPluginViewBinder : ViewBinder<View> {

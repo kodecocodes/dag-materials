@@ -52,7 +52,7 @@ class LocationTestEnv(context: Context) {
 
   private val MY_PROVIDER = "myProvider"
 
-  fun Location.copy(time: Long) = Location(this.provider).apply {
+  private fun Location.copy(time: Long) = Location(this.provider).apply {
     this.latitude = latitude
     this.longitude = longitude
     this.time = time
@@ -68,7 +68,7 @@ class LocationTestEnv(context: Context) {
     longitude = 12.4964
   }
 
-  val permissionChecker: GeoLocationPermissionChecker = mock<GeoLocationPermissionChecker>()
+  val permissionChecker: GeoLocationPermissionChecker = mock()
   val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
   val testObserver = TestObserver<LocationEvent>()
   val shadowLocationManager: ShadowLocationManager = shadowOf(locationManager)
@@ -149,15 +149,15 @@ class LocationTestEnv(context: Context) {
      */
     fun containsLocation(latitude: Double, longitude: Double) {
       val found = testObserver.values()
-        .filter { it is LocationData }
+        .filterIsInstance<LocationData>()
         .map {
-          (it as LocationData)
+          it
         }.map {
           it.location
-        }.filter {
+        }.firstOrNull {
           abs(it.latitude - latitude) < 0.001 &&
-              abs(it.longitude - longitude) < 0.001
-        }.firstOrNull()
+                  abs(it.longitude - longitude) < 0.001
+        }
       assertTrue(found != null)
     }
 
@@ -168,23 +168,23 @@ class LocationTestEnv(context: Context) {
 
     fun providerEnabledReceived() {
       val found = testObserver.values()
-        .filter { it is LocationProviderEnabledChanged }
+        .filterIsInstance<LocationProviderEnabledChanged>()
         .map {
           (it as LocationProviderEnabledChanged)
-        }.filter {
+        }.firstOrNull {
           it.enabled
-        }.firstOrNull()
+        }
       assertTrue(found != null)
     }
 
     fun providerDisabledReceived() {
       val found = testObserver.values()
-        .filter { it is LocationProviderEnabledChanged }
+        .filterIsInstance<LocationProviderEnabledChanged>()
         .map {
           (it as LocationProviderEnabledChanged)
-        }.filter {
+        }.firstOrNull {
           !it.enabled
-        }.firstOrNull()
+        }
       assertTrue(found != null)
     }
 

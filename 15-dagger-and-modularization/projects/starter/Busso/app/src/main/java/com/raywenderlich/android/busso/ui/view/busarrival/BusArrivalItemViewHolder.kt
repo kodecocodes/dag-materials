@@ -58,7 +58,7 @@ class BusArrivalItemViewHolder(
     }
 
 
-  lateinit var busStopListModel: BusArrivalGroupViewModel
+  private lateinit var busStopListModel: BusArrivalGroupViewModel
 
   fun bind(itemViewModel: BusArrivalGroupViewModel) {
     busStopListModel = itemViewModel
