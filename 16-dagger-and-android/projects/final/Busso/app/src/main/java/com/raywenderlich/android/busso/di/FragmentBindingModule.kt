@@ -45,17 +45,17 @@ import dagger.android.ContributesAndroidInjector
 interface FragmentBindingModule {
 
   @ContributesAndroidInjector(
-    modules = [
-      FragmentModule::class
-    ]
+      modules = [
+        FragmentModule::class
+      ]
   )
   @FragmentScope
   fun busStopFragment(): BusStopFragment
 
   @ContributesAndroidInjector(
-    modules = [
-      FragmentModule::class
-    ]
+      modules = [
+        FragmentModule::class
+      ]
   )
   @FragmentScope
   fun busArrivalFragment(): BusArrivalFragment

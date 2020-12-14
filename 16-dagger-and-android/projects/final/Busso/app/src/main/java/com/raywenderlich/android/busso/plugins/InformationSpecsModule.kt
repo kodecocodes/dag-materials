@@ -39,9 +39,9 @@ import com.raywenderlich.android.busso.plugins.whereami.di.WhereAmIModule
 import dagger.Module
 
 @Module(
-  includes = [
-    WhereAmIModule::class,
-    WeatherModule::class
-  ]
+    includes = [
+      WhereAmIModule::class,
+      WeatherModule::class
+    ]
 )
 object InformationSpecsModule

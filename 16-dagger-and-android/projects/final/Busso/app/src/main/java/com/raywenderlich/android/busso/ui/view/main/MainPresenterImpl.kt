@@ -43,7 +43,7 @@ import javax.inject.Named
 
 /** MainPresenter implementation */
 class MainPresenterImpl @Inject constructor(
-  @Named("Main") private val navigator: Navigator
+    @Named("Main") private val navigator: Navigator
 ) : MainPresenter {
   override fun goToBusStopList() {
     navigator.navigateTo(FragmentDestination(BusStopFragment(), R.id.anchor_point))

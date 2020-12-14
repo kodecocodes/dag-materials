@@ -39,7 +39,7 @@ import com.raywenderlich.android.mvp.Presenter
 
 /** The Presenter for the BusStopFragment */
 interface BusStopListPresenter : Presenter<View, BusStopListViewBinder>,
-  BusStopListViewBinder.BusStopItemSelectedListener {
+    BusStopListViewBinder.BusStopItemSelectedListener {
 
   fun start()
 

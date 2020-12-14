@@ -41,9 +41,9 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module(
-  includes = [
-    NetworkingModule::class
-  ]
+    includes = [
+      NetworkingModule::class
+    ]
 )
 object NetworkModule {
 

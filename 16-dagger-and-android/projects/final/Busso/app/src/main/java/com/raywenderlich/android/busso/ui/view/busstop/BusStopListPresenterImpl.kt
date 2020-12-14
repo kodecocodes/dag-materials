@@ -55,11 +55,11 @@ import javax.inject.Named
 
 @FragmentScope
 class BusStopListPresenterImpl @Inject constructor(
-  @Named("Main") private val navigator: Navigator,
-  private val locationObservable: Observable<LocationEvent>,
-  private val bussoEndpoint: BussoEndpoint
+    @Named("Main") private val navigator: Navigator,
+    private val locationObservable: Observable<LocationEvent>,
+    private val bussoEndpoint: BussoEndpoint
 ) : BasePresenter<View, BusStopListViewBinder>(),
-  BusStopListPresenter {
+    BusStopListPresenter {
 
   init {
     Log.d("BUSSOENDPOINT", "StopList: $bussoEndpoint")
@@ -69,10 +69,10 @@ class BusStopListPresenterImpl @Inject constructor(
 
   override fun start() {
     disposables.add(
-      locationObservable
-        .filter(::isLocationEvent)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(::handleLocationEvent, ::handleError)
+        locationObservable
+            .filter(::isLocationEvent)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::handleLocationEvent, ::handleError)
     )
   }
 
@@ -87,12 +87,12 @@ class BusStopListPresenterImpl @Inject constructor(
 
   private fun useLocation(location: GeoLocation) {
     disposables.add(
-      bussoEndpoint
-        .findBusStopByLocation(location.latitude, location.longitude, 500)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .map(::mapBusStop)
-        .subscribe(::displayBusStopList, ::handleError)
+        bussoEndpoint
+            .findBusStopByLocation(location.latitude, location.longitude, 500)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map(::mapBusStop)
+            .subscribe(::displayBusStopList, ::handleError)
     )
   }
 
@@ -113,22 +113,22 @@ class BusStopListPresenterImpl @Inject constructor(
   }
 
   private fun isLocationEvent(locationEvent: LocationEvent) =
-    locationEvent !is LocationPermissionRequest && locationEvent !is LocationPermissionGranted
+      locationEvent !is LocationPermissionRequest && locationEvent !is LocationPermissionGranted
 
   override fun onBusStopSelected(busStopViewModel: BusStopViewModel) {
     navigator.navigateTo(
-      FragmentFactoryDestination(
-        fragmentFactory = { bundle ->
-          BusArrivalFragment().apply {
-            arguments = bundle
-          }
-        },
-        anchorId = R.id.anchor_point,
-        withBackStack = "BusArrival",
-        bundle = bundleOf(
-          BUS_STOP_ID to busStopViewModel.stopId
+        FragmentFactoryDestination(
+            fragmentFactory = { bundle ->
+              BusArrivalFragment().apply {
+                arguments = bundle
+              }
+            },
+            anchorId = R.id.anchor_point,
+            withBackStack = "BusArrival",
+            bundle = bundleOf(
+                BUS_STOP_ID to busStopViewModel.stopId
+            )
         )
-      )
     )
   }
 

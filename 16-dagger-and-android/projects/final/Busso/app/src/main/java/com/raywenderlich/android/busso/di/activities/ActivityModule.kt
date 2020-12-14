@@ -45,9 +45,9 @@ import dagger.Binds
 import dagger.Module
 
 @Module(
-  includes = [
-    NavigatorModule::class
-  ]
+    includes = [
+      NavigatorModule::class
+    ]
 )
 interface ActivityModule {
 

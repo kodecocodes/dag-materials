@@ -45,7 +45,7 @@ import javax.inject.Inject
 
 /** Presenter implementation for the SplashActivity */
 class SplashPresenterImpl @Inject constructor(
-  private val locationObservable: Observable<LocationEvent>,
+    private val locationObservable: Observable<LocationEvent>,
 ) : BasePresenter<SplashActivity, SplashViewBinder>(), SplashPresenter {
 
   companion object {
@@ -56,10 +56,10 @@ class SplashPresenterImpl @Inject constructor(
 
   override fun start() {
     disposables.add(
-      locationObservable
-        .delay(DELAY_MILLIS, TimeUnit.MILLISECONDS)
-        .filter(::isPermissionEvent)
-        .subscribe(::handlePermissionRequest, ::handleError)
+        locationObservable
+            .delay(DELAY_MILLIS, TimeUnit.MILLISECONDS)
+            .filter(::isPermissionEvent)
+            .subscribe(::handlePermissionRequest, ::handleError)
     )
   }
 
@@ -76,7 +76,7 @@ class SplashPresenterImpl @Inject constructor(
   }
 
   private fun isPermissionEvent(locationEvent: LocationEvent) =
-    locationEvent is LocationPermissionRequest || locationEvent is LocationPermissionGranted
+      locationEvent is LocationPermissionRequest || locationEvent is LocationPermissionGranted
 
   private fun handleError(error: Throwable) {
     useViewBinder {

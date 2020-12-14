@@ -40,10 +40,10 @@ import dagger.Module
 import dagger.android.support.AndroidSupportInjectionModule
 
 @Module(
-  includes = [
-    LocationModule::class,
-    NetworkModule::class,
-    AndroidSupportInjectionModule::class
-  ]
+    includes = [
+      LocationModule::class,
+      NetworkModule::class,
+      AndroidSupportInjectionModule::class
+    ]
 )
 object ApplicationModule

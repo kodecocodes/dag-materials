@@ -46,9 +46,9 @@ import javax.inject.Inject
 
 @FragmentScope
 class BusArrivalPresenterImpl @Inject constructor(
-  private val bussoEndpoint: BussoEndpoint
+    private val bussoEndpoint: BussoEndpoint
 ) : BasePresenter<View, BusArrivalViewBinder>(),
-  BusArrivalPresenter {
+    BusArrivalPresenter {
 
   init {
     Log.d("BUSSOENDPOINT", "Arrival: $bussoEndpoint")
@@ -58,12 +58,12 @@ class BusArrivalPresenterImpl @Inject constructor(
 
   override fun fetchBusArrival(stopId: String) {
     disposables.add(
-      bussoEndpoint
-        .findArrivals(stopId)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .map(::mapBusArrivals)
-        .subscribe(::displayBusArrival, ::handleBusArrivalError)
+        bussoEndpoint
+            .findArrivals(stopId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map(::mapBusArrivals)
+            .subscribe(::displayBusArrival, ::handleBusArrivalError)
     )
   }
 

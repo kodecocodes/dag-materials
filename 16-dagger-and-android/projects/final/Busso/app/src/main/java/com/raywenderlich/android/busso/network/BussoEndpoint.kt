@@ -52,9 +52,9 @@ interface BussoEndpoint {
    */
   @GET("${BUSSO_SERVER_BASE_URL}findBusStop/{lat}/{lng}")
   fun findBusStopByLocation(
-    @Path("lat") latitude: Double,
-    @Path("lng") longitude: Double,
-    @Query("radius") radius: Int
+      @Path("lat") latitude: Double,
+      @Path("lng") longitude: Double,
+      @Query("radius") radius: Int
   ): Single<List<BusStop>>
 
   /**
@@ -63,6 +63,6 @@ interface BussoEndpoint {
    */
   @GET("$BUSSO_SERVER_BASE_URL/findBusArrivals/{stopId}")
   fun findArrivals(
-    @Path("stopId") stopId: String
+      @Path("stopId") stopId: String
   ): Single<BusArrivals>
 }

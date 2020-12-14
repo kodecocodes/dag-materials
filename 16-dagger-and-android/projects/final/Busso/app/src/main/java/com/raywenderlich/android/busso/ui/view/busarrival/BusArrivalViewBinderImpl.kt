@@ -80,9 +80,9 @@ class BusArrivalViewBinderImpl @Inject constructor() : BusArrivalViewBinder {
   /** Display the error message */
   override fun handleBusArrivalError(error: Throwable) {
     Snackbar.make(
-      busArrivalRecyclerView,
-      "$error.localizedMessage",
-      Snackbar.LENGTH_LONG
+        busArrivalRecyclerView,
+        "$error.localizedMessage",
+        Snackbar.LENGTH_LONG
     ).show()
   }
 

@@ -45,13 +45,13 @@ import dagger.Component
 import dagger.android.AndroidInjector
 
 @Component(
-  dependencies = [NetworkingConfiguration::class],
-  modules = [
-    ApplicationModule::class,
-    InformationPluginEngineModule::class,
-    InformationSpecsModule::class,
-    ActivityBindingModule::class
-  ]
+    dependencies = [NetworkingConfiguration::class],
+    modules = [
+      ApplicationModule::class,
+      InformationPluginEngineModule::class,
+      InformationSpecsModule::class,
+      ActivityBindingModule::class
+    ]
 )
 @ApplicationScope
 interface ApplicationComponent : AndroidInjector<Main> {
@@ -60,8 +60,8 @@ interface ApplicationComponent : AndroidInjector<Main> {
   interface Factory {
 
     fun create(
-      @BindsInstance application: Application,
-      networkingConfiguration: NetworkingConfiguration
+        @BindsInstance application: Application,
+        networkingConfiguration: NetworkingConfiguration
     ): ApplicationComponent
   }
 }

@@ -50,11 +50,11 @@ object NavigatorModule {
   @ActivityScope
   @Named("Main")
   fun providesMainActivityNavigator(owner: MainActivity): Navigator =
-    NavigatorImpl(owner)
+      NavigatorImpl(owner)
 
   @Provides
   @ActivityScope
   @Named("Splash")
   fun providesSplashActivityNavigator(owner: SplashActivity): Navigator =
-    NavigatorImpl(owner)
+      NavigatorImpl(owner)
 }
