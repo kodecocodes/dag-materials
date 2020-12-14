@@ -42,11 +42,13 @@ import com.raywenderlich.android.busso.plugins.di.InformationSpecsModule
 import dagger.BindsInstance
 import dagger.Component
 
-@Component(modules = [
-  ApplicationModule::class,
-  InformationPluginModule.ApplicationBindings::class,
-  InformationSpecsModule::class
-])
+@Component(
+    modules = [
+      ApplicationModule::class,
+      InformationPluginModule.ApplicationBindings::class,
+      InformationSpecsModule::class
+    ]
+)
 @ApplicationScope
 interface ApplicationComponent {
 
