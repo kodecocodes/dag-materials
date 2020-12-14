@@ -61,15 +61,15 @@ class BusArrivalFragment : Fragment() {
 
   override fun onAttach(context: Context) {
     context.activityComp
-      .fragmentComponent()
-      .inject(this)
+        .fragmentComponent()
+        .inject(this)
     super.onAttach(context)
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? = inflater.inflate(R.layout.fragment_busarrival_layout, container, false).apply {
     busArrivalViewBinder.init(this)
   }
