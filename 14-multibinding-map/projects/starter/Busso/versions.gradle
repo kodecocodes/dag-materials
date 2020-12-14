@@ -11,6 +11,9 @@ ext {
   ktx_extension_version = "1.3.2"
   support_annotation_version = "28.0.0"
 
+  autovalue_annotation_version = "1.7.4"
+  autovalue_version = "1.7.4"
+
   dagger_version = "2.29.1"
 
   rxjava_kotlin_ext_version = "2.4.0"
