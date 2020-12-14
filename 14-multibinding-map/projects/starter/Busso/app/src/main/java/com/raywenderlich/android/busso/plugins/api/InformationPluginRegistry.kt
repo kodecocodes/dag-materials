@@ -36,6 +36,6 @@ package com.raywenderlich.android.busso.plugins.api
 
 /** Abstraction for the Registry about Information Plugin */
 interface InformationPluginRegistry {
-    /** Returns the registered plugins */
-    fun plugins(): List<InformationPluginSpec>
+  /** Returns the registered plugins */
+  fun plugins(): List<InformationPluginSpec>
 }

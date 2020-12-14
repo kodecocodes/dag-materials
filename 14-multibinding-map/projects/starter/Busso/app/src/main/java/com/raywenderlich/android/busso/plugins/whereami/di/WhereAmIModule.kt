@@ -60,12 +60,13 @@ object WhereAmIModule {
   @Provides
   @ApplicationScope
   @Named(WHEREAMI_INFO_NAME) // 3
-  fun provideWhereAmISpec(endpoint: WhereAmIEndpointImpl): InformationPluginSpec = object : InformationPluginSpec {
-    override val informationEndpoint: InformationEndpoint
-      get() = endpoint
-    override val serviceName: String
-      get() = WHEREAMI_INFO_NAME
-  }
+  fun provideWhereAmISpec(endpoint: WhereAmIEndpointImpl): InformationPluginSpec =
+      object : InformationPluginSpec {
+        override val informationEndpoint: InformationEndpoint
+          get() = endpoint
+        override val serviceName: String
+          get() = WHEREAMI_INFO_NAME
+      }
 
   @Module
   interface Bindings {

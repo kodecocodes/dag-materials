@@ -37,7 +37,10 @@ package com.raywenderlich.android.busso.plugins.ui
 import android.view.View
 import com.raywenderlich.android.busso.di.scopes.FragmentScope
 import com.raywenderlich.android.busso.plugins.api.InformationPluginRegistry
-import com.raywenderlich.android.location.api.model.*
+import com.raywenderlich.android.location.api.model.LocationData
+import com.raywenderlich.android.location.api.model.LocationEvent
+import com.raywenderlich.android.location.api.model.LocationPermissionGranted
+import com.raywenderlich.android.location.api.model.LocationPermissionRequest
 import com.raywenderlich.android.mvp.impl.BasePresenter
 import io.reactivex.Flowable
 import io.reactivex.Observable
