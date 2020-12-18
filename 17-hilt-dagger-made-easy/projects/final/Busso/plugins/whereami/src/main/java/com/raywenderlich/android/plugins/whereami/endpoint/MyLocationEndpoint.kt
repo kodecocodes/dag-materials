@@ -31,7 +31,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.raywenderlich.android.busso.plugins.whereami.endpoint
+package com.raywenderlich.android.plugins.whereami.endpoint
 
 import com.raywenderlich.android.plugins.api.InformationEndpoint
 import com.raywenderlich.android.plugins.model.InfoMessage

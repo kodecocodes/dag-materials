@@ -39,7 +39,7 @@ import com.raywenderlich.android.location.api.model.LocationData
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.model.LocationPermissionGranted
 import com.raywenderlich.android.location.api.model.LocationPermissionRequest
-import com.raywenderlich.android.mvp.impl.BasePresenter
+import com.raywenderlich.android.ui.mvp.impl.BasePresenter
 import com.raywenderlich.android.plugins.api.InformationPluginRegistry
 import dagger.hilt.android.scopes.FragmentScoped
 import io.reactivex.Flowable
@@ -83,7 +83,7 @@ class InformationPluginPresenterImpl @Inject constructor(
     )
   }
 
-  fun manageResult(single: Single<MutableList<String>>) {
+  private fun manageResult(single: Single<MutableList<String>>) {
     useViewBinder {
       single
         .subscribeOn(Schedulers.io())

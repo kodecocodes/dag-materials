@@ -34,8 +34,8 @@
 
 package com.raywenderlich.android.busso.plugins
 
-import com.raywenderlich.android.busso.plugins.wether.di.WeatherModule
-import com.raywenderlich.android.busso.plugins.whereami.di.WhereAmIModule
+import com.raywenderlich.android.plugins.weather.di.WeatherModule
+import com.raywenderlich.android.plugins.whereami.di.WhereAmIModule
 import dagger.Module
 
 @Module(

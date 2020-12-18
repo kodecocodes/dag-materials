@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   package="com.raywenderlich.android.busso">
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <application
     android:name=".Main"
@@ -25,7 +28,4 @@
     </activity>
     <activity android:name=".ui.view.main.MainActivity" />
   </application>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-  <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

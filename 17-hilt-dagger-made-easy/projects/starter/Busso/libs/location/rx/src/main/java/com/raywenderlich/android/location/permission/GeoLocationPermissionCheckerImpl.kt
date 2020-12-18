@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.busso.permission
+package com.raywenderlich.android.location.permission
 
 import android.Manifest
 import android.content.Context

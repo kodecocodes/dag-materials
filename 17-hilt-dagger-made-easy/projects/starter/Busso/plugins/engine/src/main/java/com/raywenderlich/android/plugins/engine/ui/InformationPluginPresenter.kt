@@ -35,7 +35,7 @@
 package com.raywenderlich.android.plugins.engine.ui
 
 import android.view.View
-import com.raywenderlich.android.mvp.Presenter
+import com.raywenderlich.android.ui.mvp.Presenter
 
 /** Abstraction for the InformationPluginPresenter */
 interface InformationPluginPresenter : Presenter<View, InformationPluginViewBinder> {

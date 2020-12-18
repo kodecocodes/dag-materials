@@ -68,7 +68,7 @@ class LocationTestEnv(context: Context) {
     longitude = 12.4964
   }
 
-  val permissionChecker: GeoLocationPermissionChecker = mock<GeoLocationPermissionChecker>()
+  val permissionChecker: GeoLocationPermissionChecker = mock()
   val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
   val testObserver = TestObserver<LocationEvent>()
   val shadowLocationManager: ShadowLocationManager = shadowOf(locationManager)

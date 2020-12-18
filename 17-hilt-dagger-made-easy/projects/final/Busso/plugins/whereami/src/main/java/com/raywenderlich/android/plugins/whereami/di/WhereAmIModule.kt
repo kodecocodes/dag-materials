@@ -32,9 +32,9 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.busso.plugins.whereami.di
+package com.raywenderlich.android.plugins.whereami.di
 
-import com.raywenderlich.android.busso.plugins.whereami.endpoint.MyLocationEndpoint
+import com.raywenderlich.android.plugins.whereami.endpoint.MyLocationEndpoint
 import com.raywenderlich.android.di.scopes.ApplicationScoped
 import com.raywenderlich.android.plugins.api.ComplexInfoKey
 import com.raywenderlich.android.plugins.api.InformationPluginSpec

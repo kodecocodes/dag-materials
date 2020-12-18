@@ -62,7 +62,7 @@ val DIFF_UTIL = object : DiffUtil.ItemCallback<String>() {
 /**
  * The Adapter for the BusStopList
  */
-class InformationListAdapter() :
+class InformationListAdapter :
   ListAdapter<String, InformationViewHolder>(DIFF_UTIL) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InformationViewHolder {

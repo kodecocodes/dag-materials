@@ -1,4 +1,4 @@
-package com.raywenderlich.android.mvp
+package com.raywenderlich.android.ui.mvp
 
 /**
  * A Presenter in the MVP architecture. It's bound to a specific View

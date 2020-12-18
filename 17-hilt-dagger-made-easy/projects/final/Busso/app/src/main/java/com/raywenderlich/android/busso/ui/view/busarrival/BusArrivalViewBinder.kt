@@ -35,7 +35,7 @@
 package com.raywenderlich.android.busso.ui.view.busarrival
 
 import android.view.View
-import com.raywenderlich.android.mvp.ViewBinder
+import com.raywenderlich.android.ui.mvp.ViewBinder
 
 /** The ViewBinder for the BusArrival screen */
 interface BusArrivalViewBinder : ViewBinder<View> {

@@ -46,6 +46,7 @@ dependencies {
   implementation project(path: ':libs:di:scopes')
 
   // Testing libraries
+  androidTestImplementation "androidx.appcompat:appcompat:$appcompat_version"
   androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_intents_version"
   androidTestImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
 }

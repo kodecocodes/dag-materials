@@ -35,7 +35,7 @@
 package com.raywenderlich.android.busso.ui.view.busarrival
 
 import android.view.View
-import com.raywenderlich.android.mvp.Presenter
+import com.raywenderlich.android.ui.mvp.Presenter
 
 /** The Presenter for the BusArrival Screen */
 interface BusArrivalPresenter : Presenter<View, BusArrivalViewBinder> {
