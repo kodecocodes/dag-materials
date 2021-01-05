@@ -51,7 +51,7 @@ class SecondFragmentTest : Fragment() {
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
-  ): View? = TextView(container?.context).apply {
+  ): View = TextView(container?.context).apply {
     id = TEXTVIEW_ID
     text = "SecondTestFragment"
   }

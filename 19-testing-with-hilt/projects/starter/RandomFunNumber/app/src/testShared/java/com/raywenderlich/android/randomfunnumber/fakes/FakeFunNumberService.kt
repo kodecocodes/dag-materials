@@ -37,7 +37,7 @@ package com.raywenderlich.android.randomfunnumber.fakes
 import com.raywenderlich.android.randomfunnumber.business.FunNumberService
 import com.raywenderlich.android.randomfunnumber.model.FunNumber
 
-class FakeFunNumberService() : FunNumberService {
+class FakeFunNumberService : FunNumberService {
 
   var resultToReturn: FunNumber? = null
 

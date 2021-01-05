@@ -60,7 +60,7 @@ class SplashActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     makeFullScreen()
     setContentView(R.layout.activity_splash)
-    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+    Handler(Looper.getMainLooper()).postDelayed({
       if (!isFinishing) {
         goToMain()
       }

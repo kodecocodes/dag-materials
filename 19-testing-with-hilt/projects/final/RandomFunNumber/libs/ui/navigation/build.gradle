@@ -47,5 +47,5 @@ dependencies {
 
   // Testing libraries
   androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_intents_version"
-  androidTestImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
+  debugImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
 }
