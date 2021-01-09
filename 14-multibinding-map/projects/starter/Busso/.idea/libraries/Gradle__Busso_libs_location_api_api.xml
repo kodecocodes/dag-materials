@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: Busso.libs.location.api.api">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/location/api/build/libs/api.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
