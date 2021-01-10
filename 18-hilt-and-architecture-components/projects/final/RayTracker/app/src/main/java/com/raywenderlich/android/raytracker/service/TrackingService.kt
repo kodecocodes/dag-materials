@@ -95,7 +95,7 @@ class TrackingService : LifecycleService() {
     notificationBuilder.setContentText("RayTracker Running:")
     startForeground(
         FOREGROUND_NOTIFICATION_ID, notificationBuilder
-        .setContentText("Current State: ${currentState}")
+        .setContentText("Current State: $currentState")
         .build()
     )
   }
