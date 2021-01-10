@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
           with(newState.location) {
             EntryPoints.get( // HERE
                 trackRunningComponent, HiltLoggerEntryPoint::class.java
-            ).logger().log("Lat: ${latitude} Long: ${longitude}")
+            ).logger().log("Lat: $latitude Long: $longitude")
           }
         }
         text = getString(R.string.stop_tracking)

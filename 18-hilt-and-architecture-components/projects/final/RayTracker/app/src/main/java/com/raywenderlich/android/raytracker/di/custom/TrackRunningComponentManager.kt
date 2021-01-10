@@ -5,14 +5,14 @@ import javax.inject.Inject
 
 @ActivityScoped
 class TrackRunningComponentManager @Inject constructor(
-    private val trackRunnningBuilder: TrackRunningComponent.Builder
+    private val trackRunningBuilder: TrackRunningComponent.Builder
 ) {
 
   var trackRunningComponent: TrackRunningComponent? = null
 
   fun startWith(sessionId: Long) {
     if (trackRunningComponent == null) {
-      trackRunningComponent = trackRunnningBuilder
+      trackRunningComponent = trackRunningBuilder
           .sessionId(sessionId)
           .build()
     }
