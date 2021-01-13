@@ -25,7 +25,7 @@ fun Route.weather() {
   get<LocationWeatherRequest> { inputLocation ->
     val randomWeather = WEATHER[Random.nextInt(0, WEATHER.size)]
     call.respond(
-      InfoMessage("Today is: ${randomWeather}")
+      InfoMessage("Today is: $randomWeather")
     )
   }
 }

@@ -34,7 +34,7 @@ class ResourceBusStopRepository constructor(
     longitude: Float,
     radius: Int
   ): List<BusStop> {
-    logger.log("findBusStopByLocation on $this with lat:${latitude} lon: ${longitude}")
+    logger.log("findBusStopByLocation on $this with lat:$latitude lon: $longitude")
     return mutableListOf<BusStop>().apply {
       (2..10).forEach {
         add(model.items[it])

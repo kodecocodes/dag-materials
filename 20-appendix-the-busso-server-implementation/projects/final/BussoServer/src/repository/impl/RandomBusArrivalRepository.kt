@@ -23,7 +23,7 @@ class RandomBusArrivalRepository constructor(
   private val logger: Logger
 ) : BusArrivalRepository {
   override suspend fun findBusArrival(busStopId: String): List<BusArrivalGroup> {
-    logger.log("Invoking findBusArrival for id: ${busStopId} on ${this}")
+    logger.log("Invoking findBusArrival for id: $busStopId on $this")
     val busStop = busStopRepository.findBusStopById(busStopId)
     if (busStop == null) {
       return emptyList()
