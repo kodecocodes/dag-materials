@@ -1,0 +1,12 @@
+rootProject.name = "Busso"
+include ':app'
+include ':libs:di:scopes'
+include ':libs:location:api'
+include ':libs:location:rx'
+include ':libs:mvp'
+include ':libs:networking'
+include ':libs:ui:navigation'
+include ':plugins:api'
+include ':plugins:engine'
+include ':plugins:weather'
+include ':plugins:whereami'
