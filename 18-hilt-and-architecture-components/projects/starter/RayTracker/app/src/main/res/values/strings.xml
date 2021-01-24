@@ -1,0 +1,19 @@
+<resources>
+  <string name="app_name">Ray Tracker</string>
+  <string name="warning_location_not_available">Getting location data.... Please wait!</string>
+  <string name="error_problem_getting_location">There\'s some problem getting the location. </string>
+
+  <string name="message_retry">Retry</string>
+  <string name="service_description">TrackingService that tracks positions</string>
+  <string name="notification_channel_name">RayTracker Notification Channel</string>
+  <string name="notification_channel_description">This is the channel we use to notify the RayTracker state
+  </string>
+
+  <string name="notification_content">Ray Tracker</string>
+  <string name="start_tracking">Start Tracking</string>
+  <string name="stop_tracking">Stop Tracking</string>
+
+  <string name="latitude_format">Lat: %1$.5f</string>
+  <string name="longitude_format">Lon: %1$.5f</string>
+  <string name="clear_data">Clear Data</string>
+</resources>

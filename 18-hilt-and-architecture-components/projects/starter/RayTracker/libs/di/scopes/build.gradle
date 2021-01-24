@@ -1,0 +1,17 @@
+plugins {
+  id 'com.android.library'
+  id 'kotlin-android'
+  id "kotlin-kapt"
+  id "dagger.hilt.android.plugin"
+}
+apply from: '../../../versions.gradle'
+android {
+  compileSdkVersion compile_sdk_version
+  buildToolsVersion build_tool_version
+}
+dependencies {
+  api "javax.inject:javax.inject:$javax_annotation_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  api "com.google.dagger:hilt-android:$hilt_version"
+  kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+}
