@@ -67,7 +67,7 @@ class FunNumberFragment : Fragment() {
     return LayoutInflater.from(ctx as Context).inflate(R.layout.fragment_show_number, container, false).apply {
       funNumberTextView = findViewById(R.id.fun_number_output)
       funFactTextView = findViewById(R.id.fun_fact_output)
-      findViewById<TextView>(R.id.fun_fact_output).setMovementMethod(LinkMovementMethod.getInstance())
+      findViewById<TextView>(R.id.fun_fact_output).movementMethod = LinkMovementMethod.getInstance()
       findViewById<ExtendedFloatingActionButton>(R.id.refresh_fab_button).setOnClickListener {
         funNumberService.randomFunNumber { funNumberResult ->
           if (funNumberResult.found) {

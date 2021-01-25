@@ -35,7 +35,7 @@ ext {
 
   retrofit_version = "2.9.0"
   retrofit_rx2_adapter_version = "2.6.2"
-  retrofit_gson_converter_version = "2.6.2"
+  retrofit_gson_converter_version = "2.9.0"
   retrofit_scalar_converter_version = "2.9.0"
   ok_http_version = "4.9.0"
 
