@@ -1,0 +1,119 @@
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id "kotlin-kapt"
+  id "dagger.hilt.android.plugin"
+}
+apply from: '../versions.gradle'
+
+android {
+  compileSdkVersion 30
+  buildToolsVersion "30.0.3"
+
+  defaultConfig {
+    applicationId "com.raywenderlich.android.randomfunnumber"
+    minSdkVersion 28
+    targetSdkVersion 30
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "com.raywenderlich.android.randomfunnumber.runner.HiltTestRunner"
+  }
+
+  sourceSets {
+    test {
+      java.srcDirs += "$projectDir/src/testShared/java"
+    }
+
+    androidTest {
+      java.srcDirs += "$projectDir/src/testShared/java"
+    }
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+  testOptions {
+    unitTests.includeAndroidResources = true
+    unitTests.returnDefaultValues = true
+  }
+  configurations.all {
+    resolutionStrategy {
+      force "androidx.test:monitor:$androidx_test_core_version"
+    }
+  }
+  hilt {
+    enableTransformForLocalTests = true
+  }
+}
+
+dependencies {
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  // Support Libraries
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+  implementation "com.google.android.material:material:$material_version"
+
+  // Ktx
+  implementation "androidx.core:core-ktx:$ktx_extension_version"
+  implementation "androidx.activity:activity-ktx:$ktx_activity_version"
+  implementation "androidx.fragment:fragment-ktx:$ktx_fragment_version"
+
+  // ViewModels
+  implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_ktx_version"
+
+  // Hilt dependency
+  implementation "com.google.dagger:hilt-android:$hilt_version"
+  kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+  // Hilt ViewModel
+  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$viewmodel_hilt_version"
+  kapt "androidx.hilt:hilt-compiler:$viewmodel_hilt_version"
+
+
+  // Navigation utility
+  implementation project(path: ':libs:ui:navigation')
+
+  // Networking utility
+  implementation project(path: ':libs:networking')
+
+  // Rx Dependencies
+  api "io.reactivex.rxjava2:rxkotlin:$rxjava_kotlin_ext_version"
+  api "io.reactivex.rxjava2:rxandroid:$rx_android_lib_version"
+
+  // Testing Dependencies
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "androidx.test.ext:junit:$junit_ext_version"
+  testImplementation "org.robolectric:robolectric:$robolectric_version"
+  testImplementation "androidx.arch.core:core-testing:$arch_core_version"
+
+  // Hilt for Robolectric tests.
+  testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+  kaptTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+  // Dependencies for Scenarios
+  debugImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
+  debugImplementation "androidx.test:core-ktx:$androidx_test_core_version"
+
+  // Hilt for instrumented tests.
+  androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+  kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+  androidTestImplementation "androidx.test:runner:$androidx_test_runner_version"
+  androidTestImplementation "androidx.test:rules:$androidx_test_rules_version"
+  androidTestImplementation "junit:junit:$junit_version"
+  androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+}
+kapt {
+  correctErrorTypes true
+}

@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Random Fun Number</string>
+  <string name="refresh_fab_title">Random Number</string>
+  <string name="api_credit">Credit: http://numbersapi.com/</string>
+
+  <string name="error_message">Something went wrong! Try again please!</string>
+  <string name="missing_number">---</string>
+</resources>
