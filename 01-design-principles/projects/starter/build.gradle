@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
 }
 
 group 'com.raywenderlich.ch1_design_principles'
@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13.2'
 
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 }
