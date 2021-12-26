@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,29 +52,6 @@ class RxLocationObservableKtTest {
   @Before
   fun setUp() {
     context = RuntimeEnvironment.systemContext
-  }
-
-  @Test
-  fun mapBusStop_givenCompleteBusStop_returnsCompleteBusStopViewModel() {
-    // 1
-    val inputBusStop = BusStop(
-        "id",
-        "stopName",
-        GeoLocation(1.0, 2.0),
-        "direction",
-        "indicator",
-        123F
-    )
-    // 2
-    val expectedViewModel = BusStopViewModel(
-        "id",
-        "stopName",
-        "direction",
-        "indicator",
-        "123 m"
-    )
-    // 3
-    assertEquals(expectedViewModel, mapBusStop(inputBusStop))
   }
 
   @Test

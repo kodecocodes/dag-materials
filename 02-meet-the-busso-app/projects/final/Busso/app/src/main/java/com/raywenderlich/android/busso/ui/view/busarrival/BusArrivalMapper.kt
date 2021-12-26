@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -64,6 +64,12 @@ internal fun mapBusArrivalGroup(busArrivalGroup: BusArrivalGroup): BusArrivalGro
 }
 
 /**
+ * Maps the list of arrivals group into their viewmodel
+ */
+internal fun mapBusArrivalGroup(arrivals: List<BusArrivalGroup>): List<BusArrivalGroupViewModel> =
+    arrivals.map(::mapBusArrivalGroup)
+
+/**
  * Maps an arrival times group into its viewmodel
  */
 internal fun mapBusArrival(arrival: BusArrival): BusArrivalViewModel =
@@ -73,6 +79,12 @@ internal fun mapBusArrival(arrival: BusArrival): BusArrivalViewModel =
         destination = arrival.destinationName
     )
 
-val DATE_FORMATTER = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+/**
+ * Maps the list of arrival times group into their viewmodel
+ */
+fun mapBusArrival(arrivals: List<BusArrival>): List<BusArrivalViewModel> =
+    arrivals.map(::mapBusArrival)
+
+val DATE_FORMATTER = SimpleDateFormat("HH:mm")
 
 private fun expectedTime(expectedTime: Date) = DATE_FORMATTER.format(expectedTime)

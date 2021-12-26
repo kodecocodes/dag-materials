@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,34 +34,58 @@
 
 package com.raywenderlich.android.ui.navigation
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers
-import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.activityScenarioRule
 import com.raywenderlich.android.ui.navigation.util.ActivityTest
 import com.raywenderlich.android.ui.navigation.util.FragmentTest
 import com.raywenderlich.android.ui.navigation.util.FragmentTest.Companion.TEXTVIEW_ID
 import com.raywenderlich.android.ui.navigation.util.SecondFragmentTest
+import org.junit.After
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+
 
 /**
  * Test class for the ActivityNavigator implementation
  */
 class NavigatorImplTest {
 
+  val intent = Intent(ApplicationProvider.getApplicationContext(), ActivityTest::class.java)
+
   @get:Rule
-  val intentsTestRule = IntentsTestRule(ActivityTest::class.java)
+  val activityRule = activityScenarioRule<ActivityTest>(intent)
+
+  lateinit var activityNavigator: Navigator
+  lateinit var activity: Activity
+
+  @Before
+  fun setUp() {
+    Intents.init()
+    activityRule.scenario.onActivity { act ->
+      activity = act
+      activityNavigator = NavigatorImpl(act)
+    }
+  }
+
+  @After
+  fun tearDown() {
+    Intents.release()
+  }
 
   @Test
   fun navigateTo_usingActivityIntentDestination_intentForDestinationLaunched() {
-    val activityNavigator = NavigatorImpl(intentsTestRule.activity)
-    val testIntent = Intent(intentsTestRule.activity, ActivityTest::class.java).apply {
+    val testIntent = Intent(activity, ActivityTest::class.java).apply {
       putExtra("ExtraKey", "ExtraValue")
       addCategory("TEST_CATEGORY")
     }
@@ -73,16 +97,15 @@ class NavigatorImplTest {
 
   @Test
   fun navigateTo_usingFragmentDestination_fragmentIsDisplayed() {
-    val activityNavigator = NavigatorImpl(intentsTestRule.activity)
     val fragmentTest = FragmentTest()
-    val fragmentDestination = FragmentDestination(fragmentTest, ActivityTest.ANCHOR_POINT_ID)
+    val fragmentDestination =
+        FragmentDestination(fragmentTest, ActivityTest.ANCHOR_POINT_ID)
     activityNavigator.navigateTo(fragmentDestination)
     onView(withId(TEXTVIEW_ID)).check(matches(isDisplayed()))
   }
 
   @Test
   fun navigateTo_usingFragmentFactoryDestination_fragmentIsDisplayed() {
-    val activityNavigator = NavigatorImpl(intentsTestRule.activity)
     val fragmentTestFactory = { bundle: Bundle? -> FragmentTest() }
     val fragmentDestination =
         FragmentFactoryDestination(fragmentTestFactory, ActivityTest.ANCHOR_POINT_ID)
@@ -92,14 +115,12 @@ class NavigatorImplTest {
 
   @Test
   fun navigateTo_usingActivityBackDestination_activityIsFinishing() {
-    NavigatorImpl(intentsTestRule.activity)
-        .navigateTo(ActivityBackDestination)
-    assertTrue(intentsTestRule.activity.isFinishing)
+    activityNavigator.navigateTo(ActivityBackDestination)
+    assertTrue(activity.isFinishing)
   }
 
   @Test
   fun navigateTo_usingFragmentBackDestination_fragmentIsNotThere() {
-    val activityNavigator = NavigatorImpl(intentsTestRule.activity)
     val fragmentTestFactory = { bundle: Bundle? -> FragmentTest() }
     val fragmentDestination =
         FragmentFactoryDestination(fragmentTestFactory, ActivityTest.ANCHOR_POINT_ID)

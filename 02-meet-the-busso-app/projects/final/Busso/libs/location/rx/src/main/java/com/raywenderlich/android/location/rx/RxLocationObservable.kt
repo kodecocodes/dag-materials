@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,7 @@ fun provideRxLocationObservable(
             minTime,
             minDistance,
             object : LocationListener {
-              override fun onLocationChanged(location: Location?) {
+              override fun onLocationChanged(location: Location) {
                 if (location != null) {
                   emitter.onNext(
                       LocationData(
@@ -97,11 +97,11 @@ fun provideRxLocationObservable(
                 emitter.onNext(LocationStatus(provider, status, emptyMap()))
               }
 
-              override fun onProviderEnabled(provider: String?) {
+              override fun onProviderEnabled(provider: String) {
                 emitter.onNext(LocationProviderEnabledChanged(provider, true))
               }
 
-              override fun onProviderDisabled(provider: String?) {
+              override fun onProviderDisabled(provider: String) {
                 emitter.onNext(LocationProviderEnabledChanged(provider, false))
               }
 

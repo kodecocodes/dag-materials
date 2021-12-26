@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -100,9 +100,9 @@ class LocationTestEnv(context: Context) {
   inner class When {
     fun subscribeRx(): When {
       rxObservable =
-        provideRxLocationObservable(locationManager, permissionChecker, MY_PROVIDER, 0, 0F)
+          provideRxLocationObservable(locationManager, permissionChecker, MY_PROVIDER, 0, 0F)
       rxObservable
-        .subscribe(testObserver)
+          .subscribe(testObserver)
       return this
     }
 
@@ -129,14 +129,14 @@ class LocationTestEnv(context: Context) {
 
   inner class Then {
     fun permissionRequestIsFired() =
-      assertNotNull(testObserver.values().find {
-        it is LocationPermissionRequest && it.provider == MY_PROVIDER
-      })
+        assertNotNull(testObserver.values().find {
+          it is LocationPermissionRequest && it.provider == MY_PROVIDER
+        })
 
     fun permissionGrantedIsFired() =
-      assertNotNull(testObserver.values().find {
-        it is LocationPermissionGranted && it.provider == MY_PROVIDER
-      })
+        assertNotNull(testObserver.values().find {
+          it is LocationPermissionGranted && it.provider == MY_PROVIDER
+        })
 
     fun noPermissionRequestIsFired() {
       testObserver.values().forEach {
@@ -149,42 +149,42 @@ class LocationTestEnv(context: Context) {
      */
     fun containsLocation(latitude: Double, longitude: Double) {
       val found = testObserver.values()
-        .filter { it is LocationData }
-        .map {
-          (it as LocationData)
-        }.map {
-          it.location
-        }.filter {
-          abs(it.latitude - latitude) < 0.001 &&
-              abs(it.longitude - longitude) < 0.001
-        }.firstOrNull()
+          .filter { it is LocationData }
+          .map {
+            (it as LocationData)
+          }.map {
+            it.location
+          }.filter {
+            abs(it.latitude - latitude) < 0.001 &&
+                abs(it.longitude - longitude) < 0.001
+          }.firstOrNull()
       assertTrue(found != null)
     }
 
     fun receivedLocationNotAvailable() =
-      assertNotNull(testObserver.values().find {
-        it is LocationNotAvailable && it.provider == MY_PROVIDER
-      })
+        assertNotNull(testObserver.values().find {
+          it is LocationNotAvailable && it.provider == MY_PROVIDER
+        })
 
     fun providerEnabledReceived() {
       val found = testObserver.values()
-        .filter { it is LocationProviderEnabledChanged }
-        .map {
-          (it as LocationProviderEnabledChanged)
-        }.filter {
-          it.enabled
-        }.firstOrNull()
+          .filter { it is LocationProviderEnabledChanged }
+          .map {
+            (it as LocationProviderEnabledChanged)
+          }.filter {
+            it.enabled
+          }.firstOrNull()
       assertTrue(found != null)
     }
 
     fun providerDisabledReceived() {
       val found = testObserver.values()
-        .filter { it is LocationProviderEnabledChanged }
-        .map {
-          (it as LocationProviderEnabledChanged)
-        }.filter {
-          !it.enabled
-        }.firstOrNull()
+          .filter { it is LocationProviderEnabledChanged }
+          .map {
+            (it as LocationProviderEnabledChanged)
+          }.filter {
+            !it.enabled
+          }.firstOrNull()
       assertTrue(found != null)
     }
 
