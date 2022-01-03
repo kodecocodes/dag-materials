@@ -34,22 +34,18 @@
 package com.raywenderlich.android.busso
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.raywenderlich.android.busso.di.LOCATION_OBSERVABLE
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.model.LocationPermissionGranted
 import com.raywenderlich.android.location.api.model.LocationPermissionRequest
-import com.raywenderlich.android.location.api.permissions.GeoLocationPermissionChecker
-import com.raywenderlich.android.location.rx.provideRxLocationObservable
 import com.raywenderlich.android.ui.navigation.ActivityIntentDestination
 import com.raywenderlich.android.ui.navigation.Navigator
 import com.raywenderlich.android.ui.navigation.NavigatorImpl
@@ -71,24 +67,14 @@ class SplashActivity : AppCompatActivity() {
 
   private val handler = Handler()
   private val disposables = CompositeDisposable()
-  private lateinit var locationManager: LocationManager
   private lateinit var locationObservable: Observable<LocationEvent>
   private lateinit var navigator: Navigator
-
-  private val permissionChecker = object : GeoLocationPermissionChecker {
-    override val isPermissionGiven: Boolean
-      get() = ContextCompat.checkSelfPermission(
-          this@SplashActivity,
-          Manifest.permission.ACCESS_FINE_LOCATION
-      ) == PackageManager.PERMISSION_GRANTED
-  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     makeFullScreen()
     setContentView(R.layout.activity_splash)
-    locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    locationObservable = provideRxLocationObservable(locationManager, permissionChecker)
+    locationObservable = lookUp(LOCATION_OBSERVABLE)
     navigator = NavigatorImpl(this)
   }
 
