@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,11 +38,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.raywenderlich.android.busso.di.ServiceLocator
 import com.raywenderlich.android.busso.di.SplashActivityInjector
 import com.raywenderlich.android.location.api.model.LocationEvent
 import com.raywenderlich.android.location.api.model.LocationPermissionGranted
@@ -65,7 +65,7 @@ class SplashActivity : AppCompatActivity() {
     private const val LOCATION_PERMISSION_REQUEST_ID = 1
   }
 
-  private val handler = Handler()
+  private val handler = Handler(Looper.getMainLooper())
   private val disposables = CompositeDisposable()
   lateinit var locationObservable: Observable<LocationEvent>
   lateinit var navigator: Navigator
@@ -80,18 +80,18 @@ class SplashActivity : AppCompatActivity() {
   override fun onStart() {
     super.onStart()
     disposables.add(
-        locationObservable
-            .delay(DELAY_MILLIS, TimeUnit.MILLISECONDS)
-            .filter(::isPermissionEvent)
-            .subscribe(::handlePermissionRequest, ::handleError)
+      locationObservable
+        .delay(DELAY_MILLIS, TimeUnit.MILLISECONDS)
+        .filter(::isPermissionEvent)
+        .subscribe(::handlePermissionRequest, ::handleError)
     )
   }
 
   private fun makeFullScreen() {
     requestWindowFeature(Window.FEATURE_NO_TITLE)
     window.setFlags(
-        WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN
+      WindowManager.LayoutParams.FLAG_FULLSCREEN,
+      WindowManager.LayoutParams.FLAG_FULLSCREEN
     )
     supportActionBar?.hide()
   }
@@ -114,26 +114,26 @@ class SplashActivity : AppCompatActivity() {
   }
 
   private fun goToMain() =
-      handler.post {
-        navigator.navigateTo(
-            ActivityIntentDestination(
-                Intent(this, MainActivity::class.java)
-            )
+    handler.post {
+      navigator.navigateTo(
+        ActivityIntentDestination(
+          Intent(this, MainActivity::class.java)
         )
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        finish()
-      }
+      )
+      overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+      finish()
+    }
 
   private fun requestLocationPermission() {
     if (ActivityCompat.shouldShowRequestPermissionRationale(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
+        this,
+        Manifest.permission.ACCESS_FINE_LOCATION
+      )
     ) {
       ActivityCompat.requestPermissions(
-          this,
-          arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-          LOCATION_PERMISSION_REQUEST_ID
+        this,
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+        LOCATION_PERMISSION_REQUEST_ID
       )
       // Show an explanation to the user *asynchronously* -- don't block
       // this thread waiting for the user's response! After the user
@@ -141,18 +141,19 @@ class SplashActivity : AppCompatActivity() {
     } else {
       // No explanation needed, we can request the permission.
       ActivityCompat.requestPermissions(
-          this,
-          arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-          LOCATION_PERMISSION_REQUEST_ID
+        this,
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+        LOCATION_PERMISSION_REQUEST_ID
       )
     }
   }
 
   override fun onRequestPermissionsResult(
-      requestCode: Int,
-      permissions: Array<String>,
-      grantResults: IntArray
+    requestCode: Int,
+    permissions: Array<String>,
+    grantResults: IntArray
   ) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     when (requestCode) {
       LOCATION_PERMISSION_REQUEST_ID -> {
         // If request is cancelled, the result arrays are empty.
@@ -168,6 +169,6 @@ class SplashActivity : AppCompatActivity() {
   }
 
   private fun isPermissionEvent(locationEvent: LocationEvent) =
-      locationEvent is LocationPermissionRequest || locationEvent is LocationPermissionGranted
+    locationEvent is LocationPermissionRequest || locationEvent is LocationPermissionGranted
 
 }

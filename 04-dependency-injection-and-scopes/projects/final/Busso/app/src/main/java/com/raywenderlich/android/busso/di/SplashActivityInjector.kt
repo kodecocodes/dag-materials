@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.raywenderlich.android.busso.di
 
 import androidx.appcompat.app.AppCompatActivity
@@ -41,9 +40,9 @@ import com.raywenderlich.android.busso.lookUp
 object SplashActivityInjector : Injector<SplashActivity> {
   override fun inject(target: SplashActivity) {
     val activityServiceLocator =
-        target.lookUp<ServiceLocatorFactory<AppCompatActivity>>(ACTIVITY_LOCATOR_FACTORY)
-            .invoke(target)
-    target.locationObservable = activityServiceLocator.lookUp(LOCATION_OBSERVABLE) // ERROR
-    target.navigator = activityServiceLocator.lookUp(NAVIGATOR) // ERROR
+      target.lookUp<ServiceLocatorFactory<AppCompatActivity>>(ACTIVITY_LOCATOR_FACTORY)
+        .invoke(target)
+    target.locationObservable = activityServiceLocator.lookUp(LOCATION_OBSERVABLE)
+    target.navigator = activityServiceLocator.lookUp(NAVIGATOR)
   }
 }

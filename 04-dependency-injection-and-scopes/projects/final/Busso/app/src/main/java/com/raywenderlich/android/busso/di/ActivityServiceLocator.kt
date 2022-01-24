@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.raywenderlich.android.busso.di
 
 import androidx.appcompat.app.AppCompatActivity
@@ -40,16 +39,16 @@ import com.raywenderlich.android.ui.navigation.NavigatorImpl
 const val NAVIGATOR = "Navigator"
 
 val activityServiceLocatorFactory: (ServiceLocator) -> ServiceLocatorFactory<AppCompatActivity> =
-    { fallbackServiceLocator: ServiceLocator ->
-      { activity: AppCompatActivity ->
-        ActivityServiceLocator(activity).apply {
-          applicationServiceLocator = fallbackServiceLocator
-        }
+  { fallbackServiceLocator: ServiceLocator ->
+    { activity: AppCompatActivity ->
+      ActivityServiceLocator(activity).apply {
+        applicationServiceLocator = fallbackServiceLocator
       }
     }
+  }
 
 class ActivityServiceLocator(
-    val activity: AppCompatActivity
+  val activity: AppCompatActivity
 ) : ServiceLocator {
 
   var applicationServiceLocator: ServiceLocator? = null
@@ -58,6 +57,6 @@ class ActivityServiceLocator(
   override fun <A : Any> lookUp(name: String): A = when (name) {
     NAVIGATOR -> NavigatorImpl(activity)
     else -> applicationServiceLocator?.lookUp<A>(name)
-        ?: throw IllegalArgumentException("No component lookup for the key: $name")
+      ?: throw IllegalArgumentException("No component lookup for the key: $name")
   } as A
 }

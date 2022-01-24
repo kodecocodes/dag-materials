@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.raywenderlich.android.busso.di
 
 import android.annotation.SuppressLint
@@ -42,19 +41,17 @@ import com.raywenderlich.android.location.rx.provideRxLocationObservable
 
 const val LOCATION_OBSERVABLE = "LocationObservable"
 
-/**
- * Implementation for the ServiceLocator interface
- */
 class ServiceLocatorImpl(
-    val context: Context
+  val context: Context
 ) : ServiceLocator {
 
   private val locationManager =
-      context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
   private val geoLocationPermissionChecker = GeoLocationPermissionCheckerImpl(context)
   private val locationObservable =
-      provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
+    provideRxLocationObservable(locationManager, geoLocationPermissionChecker)
 
+  @Suppress("UNCHECKED_CAST")
   @SuppressLint("ServiceCast")
   override fun <A : Any> lookUp(name: String): A = when (name) {
     LOCATION_OBSERVABLE -> locationObservable
