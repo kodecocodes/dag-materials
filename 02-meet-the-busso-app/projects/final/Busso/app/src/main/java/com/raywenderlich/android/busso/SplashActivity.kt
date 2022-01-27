@@ -40,6 +40,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -69,7 +70,7 @@ class SplashActivity : AppCompatActivity() {
     private const val LOCATION_PERMISSION_REQUEST_ID = 1
   }
 
-  private val handler = Handler()
+  private val handler = Handler(Looper.getMainLooper())
   private val disposables = CompositeDisposable()
   private lateinit var locationManager: LocationManager
   private lateinit var locationObservable: Observable<LocationEvent>
@@ -168,6 +169,7 @@ class SplashActivity : AppCompatActivity() {
       permissions: Array<String>,
       grantResults: IntArray
   ) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     when (requestCode) {
       LOCATION_PERMISSION_REQUEST_ID -> {
         // If request is cancelled, the result arrays are empty.
