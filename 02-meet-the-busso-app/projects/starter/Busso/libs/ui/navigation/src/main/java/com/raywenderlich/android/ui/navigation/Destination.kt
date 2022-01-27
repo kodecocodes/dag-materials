@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,9 +52,9 @@ data class ActivityIntentDestination(val intent: Intent) : Destination()
  * This is the Destination of a navigation between Fragments
  */
 data class FragmentDestination<out T : Fragment>(
-  val fragment: T,
-  @IdRes val anchorId: Int,
-  val withBackStack: String? = null
+    val fragment: T,
+    @IdRes val anchorId: Int,
+    val withBackStack: String? = null
 ) : Destination()
 
 /**
@@ -62,10 +62,10 @@ data class FragmentDestination<out T : Fragment>(
  * Fragment
  */
 data class FragmentFactoryDestination<out T : Fragment>(
-  val fragmentFactory: (Bundle?) -> T,
-  @IdRes val anchorId: Int,
-  val withBackStack: String? = null,
-  val bundle: Bundle? = null
+    val fragmentFactory: (Bundle?) -> T,
+    @IdRes val anchorId: Int,
+    val withBackStack: String? = null,
+    val bundle: Bundle? = null
 ) : Destination()
 
 /**

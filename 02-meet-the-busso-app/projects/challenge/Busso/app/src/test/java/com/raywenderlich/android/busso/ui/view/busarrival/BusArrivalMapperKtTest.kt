@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -124,7 +124,7 @@ class BusArrivalMapperKtTest {
                 "lineName",
                 "destinationName",
                 Calendar.getInstance().apply {
-                  set(Calendar.HOUR, 12)
+                  set(Calendar.HOUR_OF_DAY, 12)
                   set(Calendar.MINUTE, 34)
                 }.time
             ),
@@ -135,7 +135,7 @@ class BusArrivalMapperKtTest {
                 "lineName",
                 "destinationName",
                 Calendar.getInstance().apply {
-                  set(Calendar.HOUR, 13)
+                  set(Calendar.HOUR_OF_DAY, 13)
                   set(Calendar.MINUTE, 5)
                 }.time
             )
@@ -162,7 +162,7 @@ class BusArrivalMapperKtTest {
   @Test
   fun mapBusArrival_whenBusArrivalIsComplete_retunsBusArrivalViewModelComplete() {
     val arrivalDate = Calendar.getInstance().apply {
-      set(Calendar.HOUR, 12)
+      set(Calendar.HOUR_OF_DAY, 12)
       set(Calendar.MINUTE, 34)
     }
     val busArrival = BusArrival(
@@ -184,7 +184,7 @@ class BusArrivalMapperKtTest {
   @Test
   fun mapBusArrival_whenBusArrivalVehicleMissing_retunsBusArrivalViewModelDefaultVehicle() {
     val arrivalDate = Calendar.getInstance().apply {
-      set(Calendar.HOUR, 12)
+      set(Calendar.HOUR_OF_DAY, 12)
       set(Calendar.MINUTE, 34)
     }
     val busArrival = BusArrival(
