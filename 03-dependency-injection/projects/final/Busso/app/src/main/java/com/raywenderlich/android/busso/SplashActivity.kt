@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -65,7 +66,7 @@ class SplashActivity : AppCompatActivity() {
     private const val LOCATION_PERMISSION_REQUEST_ID = 1
   }
 
-  private val handler = Handler()
+  private val handler = Handler(Looper.getMainLooper())
   private val disposables = CompositeDisposable()
   private lateinit var locationObservable: Observable<LocationEvent>
   private lateinit var navigator: Navigator
@@ -154,6 +155,7 @@ class SplashActivity : AppCompatActivity() {
       permissions: Array<String>,
       grantResults: IntArray
   ) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     when (requestCode) {
       LOCATION_PERMISSION_REQUEST_ID -> {
         // If request is cancelled, the result arrays are empty.
